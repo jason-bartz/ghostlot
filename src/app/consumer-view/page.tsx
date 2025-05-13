@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, ChangeEvent, MouseEvent, CSSProperties } from 'react';
+import React, { useState, useEffect, ChangeEvent, MouseEvent, CSSProperties, FormEvent } from 'react';
 import Link from 'next/link';
 import { Heart, Calendar, BookOpen, ArrowUpRight, User, Edit, LogOut, Car, CalendarDays, CreditCard } from 'lucide-react';
 import { mockVehicles, mockDealer } from '@/lib/mockData';

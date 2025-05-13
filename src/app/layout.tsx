@@ -8,6 +8,10 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'GhostLot by Refraction',
   description: 'Dealership SaaS application for vehicle inventory management and consumer engagement',
+  icons: {
+    icon: '/ghostlot-favicon.svg',
+    apple: '/ghostlot-favicon.svg',
+  },
 };
 
 export default function RootLayout({
