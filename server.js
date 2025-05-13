@@ -1,36 +1,48 @@
-const { createServer } = require('http');
 const { parse } = require('url');
 const next = require('next');
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  createServer((req, res) => {
-    const parsedUrl = parse(req.url, true);
-    const { pathname, query } = parsedUrl;
-    const host = req.headers.host || '';
-
-    // For the main domain (ghostlot.com or www.ghostlot.com), serve index.html for the root path
-    if ((host === 'ghostlot.com' || host === 'www.ghostlot.com') && pathname === '/') {
-      console.log('Serving index.html for', host);
-      const filePath = path.join(__dirname, 'public', 'index.html');
+  http.createServer((req, res) => {
+    try {
+      const parsedUrl = parse(req.url, true);
+      const { pathname } = parsedUrl;
+      const host = req.headers.host || '';
       
-      fs.readFile(filePath, 'utf8', (err, content) => {
-        if (err) {
-          console.error('Error reading index.html:', err);
-          return handle(req, res, parsedUrl);
+      // For debugging
+      console.log(`Request: ${host}${pathname}`);
+
+      // For main domain, serve static index.html at the root
+      if ((host.includes('ghostlot.com') && !host.includes('app.ghostlot.com')) && pathname === '/') {
+        try {
+          // Use path.resolve to get absolute path
+          const filePath = path.resolve(process.cwd(), 'public', 'index.html');
+          console.log('Serving static file:', filePath);
+          
+          if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf8');
+            res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+            return res.end(content);
+          } else {
+            console.error('index.html not found at path:', filePath);
+          }
+        } catch (err) {
+          console.error('Error serving index.html:', err);
         }
-        
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        return res.end(content);
-      });
-    } else {
-      // For all other paths or hosts (including app.ghostlot.com), use normal Next.js handling
+      } 
+      
+      // For app subdomain or any other route, use Next.js
       return handle(req, res, parsedUrl);
+    } catch (err) {
+      console.error('Server error:', err);
+      res.statusCode = 500;
+      res.end('Internal Server Error');
     }
   }).listen(process.env.PORT || 3000, (err) => {
     if (err) throw err;
