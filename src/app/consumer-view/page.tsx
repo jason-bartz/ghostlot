@@ -13,8 +13,8 @@ export default function ConsumerView() {
   const [activeSection, setActiveSection] = useState(null);
   const [savedToProfile, setSavedToProfile] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [loginName, setLoginName] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
@@ -220,7 +220,12 @@ export default function ConsumerView() {
   // Schedule test drive
   const scheduleTestDrive = () => {
     if (selectedDate && selectedTime) {
-      alert(`Test drive scheduled for ${selectedDate.toLocaleDateString()} at ${selectedTime}`);
+      const formattedDate = selectedDate.toLocaleDateString('en-US', {
+        month: 'numeric',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      alert(`Test drive scheduled for ${formattedDate} at ${selectedTime}`);
       setShowCalendar(false);
       setSelectedDate(null);
       setSelectedTime(null);
