@@ -13,8 +13,18 @@
   "routes": [
     {
       "src": "/",
-      "headers": { "x-matched-path": "/" },
-      "continue": true
+      "host": "ghostlot.com",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/",
+      "host": "www.ghostlot.com",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "host": "(?:www.)?ghostlot.com", 
+      "dest": "/$1"
     },
     {
       "handle": "filesystem"
