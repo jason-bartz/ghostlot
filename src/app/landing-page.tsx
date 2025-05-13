@@ -1,0 +1,1089 @@
+export default function LandingPage() {
+  return (
+    <div 
+      dangerouslySetInnerHTML={{ 
+        __html: `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GhostLot - Your Lot. Alive After Hours.</title>
+    <meta name="description" content="GhostLot connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features - even when the dealership is closed.">
+    <meta name="keywords" content="car dealership software, automotive digital retailing, QR code inventory, dealership tech, after hours car shopping">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/ghostlot-favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ghostlot.com">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ghostlot.com">
+    <meta property="og:title" content="GhostLot - Your Lot. Alive After Hours.">
+    <meta property="og:description" content="Transform your dealership with 24/7 digital connections to your inventory. GhostLot lets shoppers view, save, and reserve vehicles even when you're closed.">
+    <meta property="og:image" content="/opengraph.webp">
+    <meta property="og:image:alt" content="GhostLot mobile dealership experience">
+    <meta property="og:site_name" content="GhostLot">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://ghostlot.com">
+    <meta name="twitter:title" content="GhostLot - Your Lot. Alive After Hours.">
+    <meta name="twitter:description" content="Transform your dealership with 24/7 digital connections to your inventory. GhostLot lets shoppers view, save, and reserve vehicles even when you're closed.">
+    <meta name="twitter:image" content="/opengraph.webp">
+    <meta name="twitter:image:alt" content="GhostLot mobile dealership experience">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script async src="https://tally.so/widgets/embed.js"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GhostLot",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/ComingSoon"
+      },
+      "description": "GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It turns every vehicle into an interactive, hyper-mobile experience that works 24/7."
+    }
+    </script>
+    <style>
+        :root {
+            --primary: #8B5CF6;           /* Vibrant purple */
+            --primary-dark: #6D28D9;      /* Deeper purple */
+            --primary-light: #A78BFA;     /* Light purple */
+            --accent: #FBBF24;            /* Gold for contrast */
+            --dark: #0F172A;              /* Very dark blue/black */
+            --darker: #050A1A;            /* Even darker for sections */
+            --light: #F9FAFB;             /* White/light for text */
+            --gray: #94A3B8;              /* Medium gray */
+            --gray-dark: #1E293B;         /* Dark gray for cards */
+            --gray-light: #334155;        /* Lighter gray for borders */
+            --glow-purple: #8B5CF644;     /* Purple with transparency for glow effects */
+            --glow-gold: #FBBF2444;       /* Gold with transparency for glow effects */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light);
+            background-color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 2.5rem;
+            filter: drop-shadow(0 0 8px var(--glow-purple));
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-left: 0.75rem;
+            background: linear-gradient(to right, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px var(--glow-purple);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.75rem 1.75rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--glow-purple);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px var(--glow-purple);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .hero {
+            margin-top: 0;
+            padding: 10rem 0 6rem;
+            background: radial-gradient(circle at top right, var(--gray-dark), var(--dark));
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, var(--glow-purple), transparent 35%);
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px var(--glow-purple);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-stars {
+            position: absolute;
+            top: 10px;
+            right: 100px;
+            color: var(--accent);
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 0 15px var(--glow-gold);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            opacity: 0.85;
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: translateY(-50%) scale(1.02);
+            opacity: 1;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .sparkles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section:nth-child(odd) {
+            background-color: var(--darker);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .section-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            font-size: 1.125rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--gray-dark);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid var(--gray-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--glow-purple);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 25px var(--glow-purple);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .how-it-works {
+            background: radial-gradient(circle at center, var(--gray-dark), var(--darker));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-it-works::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, var(--glow-purple), transparent 35%);
+            opacity: 0.3;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 2rem;
+            right: -1.5rem;
+            width: 3rem;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), transparent);
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--glow-purple);
+            transition: all 0.3s ease;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px var(--glow-purple);
+        }
+
+        .step h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .benefits-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease;
+        }
+
+        .benefits-list li:hover {
+            transform: translateX(5px);
+        }
+
+        .check-icon {
+            color: var(--accent);
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            text-shadow: 0 0 10px var(--glow-gold);
+        }
+
+        .benefits-list h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .benefits-list p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .benefits-image {
+            width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.5s ease;
+            transform: perspective(1000px) rotateY(-5deg);
+            border: 1px solid var(--gray-light);
+        }
+
+        .benefits-image:hover {
+            transform: perspective(1000px) rotateY(0);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.3);
+        }
+
+        .cta-section {
+            background: linear-gradient(45deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            border-radius: 1rem;
+            padding: 4rem 2rem;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-primary {
+            background-color: white;
+            color: var(--primary);
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background-color: var(--darker);
+            color: var(--light);
+            padding: 4rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            height: 2.5rem;
+            filter: drop-shadow(0 0 8px var(--glow-purple));
+        }
+
+        .footer-logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-left: 0.75rem;
+            background: linear-gradient(to right, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            max-width: 400px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            background-color: var(--gray-dark);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .social-link svg {
+            fill: var(--gray);
+            transition: fill 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            box-shadow: 0 8px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .social-link:hover svg {
+            fill: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-image {
+                width: 40%;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .step:nth-child(2)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            .nav-links {
+                margin: 1rem 0;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.125rem;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .hero-content {
+                max-width: none;
+                text-align: center;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .benefits {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <img src="/ghostlot-favicon.svg" alt="GhostLot Logo - 24/7 Automotive Digital Retail Solution">
+                    <div class="logo-text">GhostLot</div>
+                </div>
+                <nav aria-label="Main Navigation">
+                    <div class="nav-links">
+                        <a href="#features" aria-label="Learn about GhostLot features">Features</a>
+                        <a href="#how-it-works" aria-label="Discover how GhostLot works">How It Works</a>
+                        <a href="#benefits" aria-label="See dealer benefits">Benefits</a>
+                    </div>
+                </nav>
+                <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" aria-label="GhostLot introduction">
+        <div class="sparkles-container" id="sparkles-effect"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-stars" aria-hidden="true">✨</span>
+                <h1>Your lot. Alive after hours.</h1>
+                <p>GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It's designed to turn every vehicle into an interactive, hyper-mobile experience that works 24/7. Shoppers can view real-time pricing, schedule test drives, estimate payments, and reserve vehicles—all without needing to talk to a salesperson.</p>
+                <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+            </div>
+            <img src="/website/desktop-image.png" alt="GhostLot mobile application interface showing vehicle details and pricing" class="hero-image" loading="eager" width="600" height="400" />
+        </div>
+    </section>
+
+    <section class="section" id="features" aria-label="GhostLot Features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features Built for Dealers</h2>
+                <p>GhostLot turns your entire inventory into a self-service dealership, maximizing engagement and conversions even when you're closed.</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔍</div>
+                    <h3>Interactive QR Codes</h3>
+                    <p>Generate custom QR codes for each vehicle in your inventory. Place them on windshields, brochures, or print ads to create instant digital connections to your inventory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📱</div>
+                    <h3>Mobile-First Experience</h3>
+                    <p>Deliver a seamless mobile experience that works on any device. No app downloads required – customers simply scan and start browsing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Track scans, test drive requests, saved vehicles, and more. Gain insights into which vehicles are getting the most attention and optimize your inventory accordingly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🗓️</div>
+                    <h3>Automated Scheduling</h3>
+                    <p>Allow customers to book test drives directly from their phones. Manage all appointments from a single dashboard and never miss a potential sale.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">💰</div>
+                    <h3>Digital Reservations</h3>
+                    <p>Accept deposits and secure vehicle reservations online. Customers can hold their dream car with just a few taps, even outside business hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔗</div>
+                    <h3>DMS Integration</h3>
+                    <p>Seamlessly connect with your dealer management system for real-time inventory updates. No manual data entry required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works" id="how-it-works" aria-label="How GhostLot Works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How GhostLot Works</h2>
+                <p>Get up and running in minutes with our simple four-step process.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">1</div>
+                    <h3>Connect</h3>
+                    <p>Link your inventory through our DMS integrations or manual upload.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">2</div>
+                    <h3>Generate</h3>
+                    <p>Create custom QR codes for each vehicle in your inventory.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">3</div>
+                    <h3>Place</h3>
+                    <p>Put QR codes on vehicles and marketing materials.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number" aria-hidden="true">4</div>
+                    <h3>Engage</h3>
+                    <p>Monitor leads and conversions through your dealer dashboard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="benefits" aria-label="GhostLot Benefits">
+        <div class="container">
+            <div class="benefits">
+                <div class="benefits-content">
+                    <h2>Why Dealers Choose GhostLot</h2>
+                    <ul class="benefits-list">
+                        <li>
+                            <div class="check-icon" aria-hidden="true">✓</div>
+                            <div>
+                                <h4>24/7 Sales Opportunities</h4>
+                                <p>Convert after-hours lot visitors into qualified leads, even when your showroom is closed.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon" aria-hidden="true">✓</div>
+                            <div>
+                                <h4>Reduced Staffing Pressures</h4>
+                                <p>Let customers self-serve basic information needs, freeing your sales team to focus on high-value activities.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon" aria-hidden="true">✓</div>
+                            <div>
+                                <h4>Modern Shopping Experience</h4>
+                                <p>Meet evolving consumer expectations with a digital-first approach that today's car buyers prefer.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon" aria-hidden="true">✓</div>
+                            <div>
+                                <h4>Increased Engagement</h4>
+                                <p>Boost interaction with your inventory through interactive features and digital touchpoints.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="check-icon" aria-hidden="true">✓</div>
+                            <div>
+                                <h4>Data-Driven Insights</h4>
+                                <p>Leverage analytics to understand customer behavior and optimize your inventory and marketing strategy.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <img src="/website/mobile-image.png" alt="GhostLot mobile application showing vehicle details, pricing and scheduling interface" class="benefits-image" loading="lazy" width="500" height="680" />
+            </div>
+        </div>
+    </section>
+
+    <section class="section" aria-label="Join GhostLot Waitlist">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Ready to transform your dealership?</h2>
+                <p>Join the waitlist today to be among the first dealers to access GhostLot. Limited spots available for our early access program.</p>
+                <div class="cta-buttons">
+                    <button class="cta-primary" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">
+                        <img src="/ghostlot-favicon.svg" alt="GhostLot Logo" width="40" height="40">
+                        <div class="footer-logo-text">GhostLot</div>
+                    </div>
+                    <p class="footer-description">
+                        Your lot. Alive after hours.
+                        <br />
+                        GhostLot connects shoppers to dealer inventory with a seamless mobile experience that works 24/7.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://twitter.com/GhostLotApp" class="social-link" aria-label="Follow GhostLot on Twitter" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22 5.80C21.2483 6.12833 20.4534 6.34167 19.64 6.43C20.4982 5.92167 21.1413 5.12167 21.447 4.17C20.6421 4.65 19.761 4.98833 18.842 5.17C18.0989 4.37167 17.0266 3.875 15.8462 3.875C13.5798 3.875 11.7443 5.71 11.7443 7.97667C11.7443 8.30167 11.7799 8.61833 11.8548 8.92C8.43822 8.745 5.41699 7.11 3.39163 4.62167C3.03576 5.23833 2.83604 5.92167 2.83604 6.65333C2.83604 8.03333 3.56149 9.25833 4.66162 9.975C3.98979 9.95333 3.35673 9.77833 2.80343 9.485C2.80343 9.50167 2.80343 9.52 2.80343 9.53833C2.80343 11.5333 4.22201 13.2017 6.08539 13.5783C5.73996 13.6717 5.37269 13.7217 4.99377 13.7217C4.73428 13.7217 4.47913 13.6967 4.23239 13.65C4.74878 15.29 6.27585 16.48 8.07405 16.5167C6.67004 17.6133 4.90154 18.2633 2.97963 18.2633C2.6472 18.2633 2.32341 18.2433 2 18.205C3.81608 19.3667 5.97233 20.0417 8.28941 20.0417C15.8356 20.0417 19.9644 13.7917 19.9644 8.32833C19.9644 8.14833 19.9608 7.97 19.9501 7.79333C20.7643 7.205 21.4505 6.46167 22 5.80Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/GhostLotApp" class="social-link" aria-label="Follow GhostLot on Instagram" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2.16094C15.2063 2.16094 15.5859 2.175 16.8469 2.23125C18.0188 2.28281 18.6516 2.47969 19.0734 2.64375C19.6313 2.85938 20.0344 3.12188 20.4516 3.53906C20.8734 3.96094 21.1313 4.35938 21.3469 4.91719C21.5109 5.33906 21.7078 5.97656 21.7594 7.14375C21.8156 8.40937 21.8297 8.78906 21.8297 12C21.8297 15.2109 21.8156 15.5906 21.7594 16.8516C21.7078 18.0234 21.5109 18.6563 21.3469 19.0781C21.1313 19.6359 20.8688 20.0391 20.4516 20.4563C20.0297 20.8781 19.6313 21.1359 19.0734 21.3516C18.6516 21.5156 18.0141 21.7125 16.8469 21.7641C15.5813 21.8203 15.2016 21.8344 12 21.8344C8.79375 21.8344 8.41406 21.8203 7.15313 21.7641C5.98125 21.7125 5.34844 21.5156 4.92656 21.3516C4.36875 21.1359 3.96563 20.8734 3.54844 20.4563C3.12656 20.0344 2.86875 19.6359 2.65313 19.0781C2.48906 18.6563 2.29219 18.0188 2.24063 16.8516C2.18438 15.5859 2.17031 15.2063 2.17031 12C2.17031 8.78906 2.18438 8.40937 2.24063 7.14844C2.29219 5.97656 2.48906 5.34375 2.65313 4.92188C2.86875 4.36406 3.13125 3.96094 3.54844 3.54375C3.97031 3.12188 4.36875 2.86406 4.92656 2.64844C5.34844 2.48438 5.98594 2.2875 7.15313 2.23594C8.41406 2.175 8.79375 2.16094 12 2.16094ZM12 0C8.74219 0 8.33438 0.0140625 7.05469 0.0703125C5.77969 0.126563 4.90313 0.332812 4.14375 0.628125C3.35156 0.9375 2.68125 1.34531 2.01563 2.01562C1.34531 2.68125 0.9375 3.35156 0.628125 4.13906C0.332812 4.90312 0.126563 5.775 0.0703125 7.05C0.0140625 8.33437 0 8.74219 0 12C0 15.2578 0.0140625 15.6656 0.0703125 16.9453C0.126563 18.2203 0.332812 19.0969 0.628125 19.8563C0.9375 20.6484 1.34531 21.3188 2.01563 21.9844C2.68125 22.65 3.35156 23.0625 4.13906 23.3672C4.90313 23.6625 5.775 23.8687 7.05 23.925C8.32969 23.9812 8.7375 23.9953 11.9953 23.9953C15.2531 23.9953 15.6609 23.9812 16.9406 23.925C18.2156 23.8687 19.0922 23.6625 19.8516 23.3672C20.6391 23.0625 21.3094 22.65 21.975 21.9844C22.6406 21.3188 23.0531 20.6484 23.3578 19.8609C23.6531 19.0969 23.8594 18.225 23.9156 16.95C23.9719 15.6703 23.9859 15.2625 23.9859 12.0047C23.9859 9.74687 23.9719 9.33906 23.9156 8.05937C23.8594 6.78437 23.6531 5.90781 23.3578 5.14844C23.0625 4.35156 22.6547 3.68125 21.9844 3.01562C21.3188 2.35 20.6484 1.9375 19.8609 1.63281C19.0969 1.3375 18.225 1.13125 16.95 1.075C15.6656 0.0140625 15.2578 0 12 0Z" fill="currentColor"/>
+                                <path d="M12 5.83594C8.59688 5.83594 5.83594 8.59688 5.83594 12C5.83594 15.4031 8.59688 18.1641 12 18.1641C15.4031 18.1641 18.1641 15.4031 18.1641 12C18.1641 8.59688 15.4031 5.83594 12 5.83594ZM12 16.0031C9.79219 16.0031 7.99688 14.2078 7.99688 12C7.99688 9.79219 9.79219 7.99688 12 7.99688C14.2078 7.99688 16.0031 9.79219 16.0031 12C16.0031 14.2078 14.2078 16.0031 12 16.0031Z" fill="currentColor"/>
+                                <path d="M19.8469 5.59214C19.8469 6.38902 19.2 7.0312 18.4078 7.0312C17.6109 7.0312 16.9688 6.38433 16.9688 5.59214C16.9688 4.79526 17.6156 4.15308 18.4078 4.15308C19.2 4.15308 19.8469 4.79995 19.8469 5.59214Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/ghostlot" class="social-link" aria-label="Connect with GhostLot on LinkedIn" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22.4412 0H1.55882C0.697059 0 0 0.697059 0 1.55882V22.4412C0 23.3029 0.697059 24 1.55882 24H22.4412C23.3029 24 24 23.3029 24 22.4412V1.55882C24 0.697059 23.3029 0 22.4412 0ZM7.15059 20.4706H3.67059V9.04235H7.15059V20.4706ZM5.41059 7.49647C4.26353 7.49647 3.33176 6.56471 3.33176 5.42118C3.33176 4.27765 4.26353 3.34588 5.41059 3.34588C6.55412 3.34588 7.48588 4.27765 7.48588 5.42118C7.48588 6.56471 6.55412 7.49647 5.41059 7.49647ZM20.4706 20.4706H16.9906V14.9647C16.9906 13.6447 16.97 11.9153 15.1329 11.9153C13.2753 11.9153 12.9847 13.3976 12.9847 14.9224V20.4706H9.50471V9.04235H12.8447V10.5871H12.8853C13.3765 9.69176 14.5447 8.74588 16.2741 8.74588C19.7953 8.74588 20.4706 11.0659 20.4706 14.0735V20.4706Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                © 2025 GhostLot by Refraction. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple scroll to sections
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Sticky header effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)';
+            } else {
+                header.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }
+        });
+        
+        // Simple particles effect
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
+            
+            const numberOfParticles = 30;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = \`\${size}px\`;
+                particle.style.height = \`\${size}px\`;
+                
+                // Random horizontal position
+                const xPos = Math.random() * 100;
+                particle.style.left = \`\${xPos}%\`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = \`\${duration}s\`;
+                
+                // Random delay so they don't all start at the same time
+                const delay = Math.random() * 10;
+                particle.style.animationDelay = \`\${delay}s\`;
+                
+                // Add particle to the container
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles when the page loads
+        window.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+</body>
+</html>
+        `
+      }} 
+    />
+  );
+}
