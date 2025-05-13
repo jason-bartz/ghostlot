@@ -9,5 +9,22 @@
         }
       }
     }
-  ]
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "headers": { "x-matched-path": "/" },
+      "continue": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "github": {
+    "silent": true
+  }
 }
