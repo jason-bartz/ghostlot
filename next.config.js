@@ -12,6 +12,35 @@ const nextConfig = {
     });
     return config;
   },
+  // This custom rewrites configuration will serve index.html as the main landing page
+  async rewrites() {
+    const isProduction = process.env.NODE_ENV === 'production';
+    
+    return [
+      {
+        // For the main domain (www.ghostlot.com)
+        source: '/',
+        has: [
+          {
+            type: 'host',
+            value: '(?:www\\.)?ghostlot\\.com',
+          },
+        ],
+        destination: '/index.html',
+      },
+      // Add a fallback rewrite for all paths on the main domain
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '(?:www\\.)?ghostlot\\.com',
+          },
+        ],
+        destination: '/:path*',
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
