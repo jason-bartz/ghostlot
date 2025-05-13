@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent, MouseEvent, CSSProperties } from 'react';
 import Link from 'next/link';
 import { Heart, Calendar, BookOpen, ArrowUpRight, User, Edit, LogOut, Car, CalendarDays, CreditCard } from 'lucide-react';
 import { mockVehicles, mockDealer } from '@/lib/mockData';
@@ -138,7 +138,7 @@ export default function ConsumerView() {
   };
 
   // Get button styling based on dealer preferences
-  const getButtonStyle = () => {
+  const getButtonStyle = (): CSSProperties => {
     return {
       backgroundColor: styling.primaryColor,
       color: styling.fontColor,
@@ -148,7 +148,7 @@ export default function ConsumerView() {
   };
 
   // Handle save vehicle action
-  const handleSaveVehicle = () => {
+  const handleSaveVehicle = (): void => {
     if (!isUserLoggedIn) {
       setShowLogin(true);
     } else {
@@ -162,7 +162,7 @@ export default function ConsumerView() {
   };
 
   // Handle profile creation
-  const handleCreateProfile = () => {
+  const handleCreateProfile = (): void => {
     if (loginName && (loginEmail || loginPhone)) {
       setIsUserLoggedIn(true);
       setShowLogin(false);
@@ -191,7 +191,7 @@ export default function ConsumerView() {
   };
 
   // Calculate payment
-  const calculatePayment = () => {
+  const calculatePayment = (): void => {
     const { price, downPayment, tradeInValue, term, rate } = calculatorState;
     const loanAmount = price - downPayment - tradeInValue;
     const monthlyRate = rate / 100 / 12;
@@ -204,7 +204,7 @@ export default function ConsumerView() {
   };
 
   // Generate date range for next 3 days (72 hours)
-  const getDateRange = () => {
+  const getDateRange = (): Date[] => {
     const dates = [];
     const today = new Date();
     
@@ -235,7 +235,7 @@ export default function ConsumerView() {
   };
 
   // Toggle section visibility
-  const toggleSection = (section) => {
+  const toggleSection = (section: string): void => {
     if (section === 'test-drive') {
       setShowCalendar(true);
       return;
@@ -257,7 +257,7 @@ export default function ConsumerView() {
   });
 
   // Update trade-in form
-  const handleTradeInChange = (e) => {
+  const handleTradeInChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
     const { name, value } = e.target;
     setTradeInForm({
       ...tradeInForm,
@@ -266,7 +266,7 @@ export default function ConsumerView() {
   };
 
   // Get trade-in value (simplified for demo)
-  const getTradeInValue = () => {
+  const getTradeInValue = (): void => {
     if (!tradeInForm.year || !tradeInForm.make || !tradeInForm.model || !tradeInForm.mileage) {
       alert('Please fill out all fields to get a trade-in estimate.');
       return;

@@ -18,7 +18,8 @@
     "react-dom": "18.2.0",
     "react-qr-code": "^2.0.12",
     "recharts": "^2.8.0",
-    "utf-8-validate": "^6.0.3"
+    "utf-8-validate": "^6.0.3",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@types/node": "20.4.9",
