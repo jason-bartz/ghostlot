@@ -12,12 +12,30 @@ const nextConfig = {
     });
     return config;
   },
-  // This custom rewrites configuration will serve index.html as the main landing page
+  // Domain-based routing configuration
   async rewrites() {
     return [
+      // For ghostlot.com or www.ghostlot.com, serve the static landing page
       {
-        source: '/',
-        destination: '/index.html'
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: '(?:www\\.)?ghostlot\\.com',
+          },
+        ],
+        destination: '/index.html',
+      },
+      // For app.ghostlot.com, serve the Next.js app
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'app\\.ghostlot\\.com',
+          },
+        ],
+        destination: '/:path*',
       }
     ];
   },
