@@ -1,0 +1,10 @@
+{
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/inventory/page": "app/dashboard/inventory/page.js",
+  "/dashboard/qr-codes/page": "app/dashboard/qr-codes/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/dashboard/reservations/page": "app/dashboard/reservations/page.js",
+  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
+  "/dashboard/test-drives/page": "app/dashboard/test-drives/page.js"
+}
