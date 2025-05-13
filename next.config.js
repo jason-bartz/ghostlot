@@ -17,7 +17,7 @@ const nextConfig = {
     return [
       // For ghostlot.com or www.ghostlot.com, serve the static landing page
       {
-        source: '/:path*',
+        source: '/',
         has: [
           {
             type: 'host',
@@ -26,16 +26,21 @@ const nextConfig = {
         ],
         destination: '/index.html',
       },
-      // For app.ghostlot.com, serve the Next.js app
+      // For ghostlot.com/*, serve static assets directly
       {
         source: '/:path*',
         has: [
           {
             type: 'host',
-            value: 'app\\.ghostlot\\.com',
+            value: '(?:www\\.)?ghostlot\\.com',
           },
         ],
         destination: '/:path*',
+      },
+      // Default behavior for all other domains (including app.ghostlot.com)
+      {
+        source: '/',
+        destination: '/app/page',
       }
     ];
   },
