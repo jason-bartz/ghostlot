@@ -15,7 +15,7 @@ const nextConfig = {
   // Domain-based routing configuration
   async rewrites() {
     return [
-      // For ghostlot.com or www.ghostlot.com, serve the static landing page
+      // Main domain route - serve index.html (dark marketing site) for ghostlot.com
       {
         source: '/',
         has: [
@@ -26,7 +26,7 @@ const nextConfig = {
         ],
         destination: '/index.html',
       },
-      // For ghostlot.com/*, serve static assets directly
+      // Static assets for the main domain
       {
         source: '/:path*',
         has: [
@@ -36,11 +36,6 @@ const nextConfig = {
           },
         ],
         destination: '/:path*',
-      },
-      // Default behavior for all other domains (including app.ghostlot.com)
-      {
-        source: '/',
-        destination: '/app/page',
       }
     ];
   },
