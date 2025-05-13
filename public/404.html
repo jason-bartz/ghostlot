@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | GhostLot</title>
+    <meta name="description" content="Page not found - GhostLot connects automotive shoppers to dealer inventory 24/7 with interactive QR codes and digital services.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/ghostlot-favicon.svg" type="image/svg+xml">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #8B5CF6;           /* Vibrant purple */
+            --primary-dark: #6D28D9;      /* Deeper purple */
+            --primary-light: #A78BFA;     /* Light purple */
+            --accent: #FBBF24;            /* Gold for contrast */
+            --dark: #0F172A;              /* Very dark blue/black */
+            --darker: #050A1A;            /* Even darker for sections */
+            --light: #F9FAFB;             /* White/light for text */
+            --gray: #94A3B8;              /* Medium gray */
+            --gray-dark: #1E293B;         /* Dark gray for cards */
+            --gray-light: #334155;        /* Lighter gray for borders */
+            --glow-purple: #8B5CF644;     /* Purple with transparency for glow effects */
+            --glow-gold: #FBBF2444;       /* Gold with transparency for glow effects */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light);
+            background-color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo img {
+            height: 3.5rem;
+            filter: drop-shadow(0 0 12px var(--glow-purple));
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-left: 0.75rem;
+            background: linear-gradient(to right, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px var(--glow-purple);
+        }
+
+        h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--light), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px var(--glow-purple);
+        }
+
+        .ghost {
+            font-size: 8rem;
+            margin: 1rem 0;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px var(--glow-purple));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px var(--glow-purple);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px var(--glow-purple);
+        }
+
+        /* Background effect */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, var(--glow-purple), transparent 70%);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        /* Particles effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .ghost {
+                font-size: 6rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .ghost {
+                font-size: 4rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="logo">
+            <img src="/ghostlot-favicon.svg" alt="GhostLot Logo">
+            <div class="logo-text">GhostLot</div>
+        </div>
+        
+        <h1>404</h1>
+        <div class="ghost" aria-hidden="true">👻</div>
+        <p>Oops! It seems this page has vanished like a ghost. The page you're looking for doesn't exist or may have moved to another location.</p>
+        
+        <a href="/" class="cta-button">Return to Home</a>
+    </div>
+
+    <script>
+        // Create floating particles effect
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const numberOfParticles = 30;
+            
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random horizontal position
+                const xPos = Math.random() * 100;
+                particle.style.left = `${xPos}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay so they don't all start at the same time
+                const delay = Math.random() * 10;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Add particle to the container
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles on load
+        window.addEventListener('DOMContentLoaded', createParticles);
+    </script>
+</body>
+</html>
