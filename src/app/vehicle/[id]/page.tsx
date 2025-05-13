@@ -6,6 +6,7 @@ import { Heart, Calendar, BookOpen, ArrowUpRight, X } from 'lucide-react';
 import supabase from '@/lib/supabase';
 import ReservationSystem from '@/components/vehicle/ReservationSystem';
 import TestDriveScheduler from '@/components/vehicle/TestDriveScheduler';
+import { getAllMakes, getModelsByMake, getValueMultiplier } from '@/lib/vehicleDatabase';
 
 export default function VehicleDetailPage({ params }: { params: { id: string } }) {
   const [vehicle, setVehicle] = useState<any>(null);
@@ -34,8 +35,13 @@ export default function VehicleDetailPage({ params }: { params: { id: string } }
     make: '',
     model: '',
     mileage: 0,
+    color: '',
     condition: 'Good'
   });
+  
+  // Vehicle makes and available models
+  const [availableMakes] = useState<string[]>(getAllMakes());
+  const [availableModels, setAvailableModels] = useState<string[]>([]);
   
   const router = useRouter();
   
@@ -194,42 +200,86 @@ export default function VehicleDetailPage({ params }: { params: { id: string } }
   };
   
   const calculateTradeIn = () => {
-    // Simple trade-in value calculation based on year, make, condition, and mileage
-    // This is just a mock calculation for demo purposes
-    const { year, mileage, condition } = tradeInForm;
+    // Enhanced trade-in value calculation using our vehicle database
+    const { year, make, model, mileage, condition } = tradeInForm;
     
-    if (!tradeInForm.make || !tradeInForm.model) {
-      alert('Please enter make and model information.');
+    if (!make || !model) {
+      alert('Please select a make and model from the dropdown menus.');
       return;
     }
     
-    const baseValue = 20000; // Base value for a 2021 vehicle in excellent condition
+    // Base value calculation
+    const currentYear = new Date().getFullYear();
+    const baseValue = 25000; // Base value for a current year vehicle in excellent condition
     
-    // Adjust for year
-    const yearAdjustment = (year - 2021) * 1000; // $1000 per year
+    // Get the make/model specific value multiplier from our database
+    const makeModelMultiplier = getValueMultiplier(make, model);
+    
+    // Adjust for year (more steep depreciation in recent years)
+    let yearAdjustment;
+    const age = currentYear - year;
+    
+    if (age <= 3) {
+      // Newer cars depreciate faster (15% per year)
+      yearAdjustment = -baseValue * (age * 0.15);
+    } else if (age <= 10) {
+      // Middle-aged cars depreciate slower
+      yearAdjustment = -baseValue * (0.45 + (age - 3) * 0.05);
+    } else {
+      // After 10 years, depreciation slows even more
+      yearAdjustment = -baseValue * (0.80 + (age - 10) * 0.01);
+      
+      // Classic car value boost for vehicles 25+ years old
+      if (age >= 25) {
+        yearAdjustment += baseValue * 0.1;
+      }
+    }
     
     // Adjust for mileage
-    const mileageAdjustment = -1 * (mileage / 10000) * 500; // -$500 per 10k miles
+    // Average mileage is about 12,000 per year
+    const expectedMileage = age * 12000;
+    const mileageDifference = mileage - expectedMileage;
+    let mileageAdjustment = 0;
     
-    // Adjust for condition
+    if (mileageDifference > 0) {
+      // Higher than expected mileage (penalize more heavily)
+      mileageAdjustment = -1 * (mileageDifference / 5000) * 250;
+    } else {
+      // Lower than expected mileage (reward but not as much)
+      mileageAdjustment = -1 * (mileageDifference / 5000) * 150;
+    }
+    
+    // Adjust for condition (expanded options)
     let conditionMultiplier = 1;
     switch (condition) {
       case 'Excellent':
-        conditionMultiplier = 1;
+        conditionMultiplier = 1.2; // Looks new and is in excellent mechanical condition (2% of cars)
+        break;
+      case 'Very Good':
+        conditionMultiplier = 1.1; // Has minor cosmetic defects and is in good mechanical condition (28% of cars)
         break;
       case 'Good':
-        conditionMultiplier = 0.9;
+        conditionMultiplier = 1.0; // Has repairable cosmetic defects and mechanical problems (50% of cars)
         break;
       case 'Fair':
-        conditionMultiplier = 0.8;
+        conditionMultiplier = 0.85; // Requires some mechanical repairs (20% of cars)
         break;
       case 'Poor':
-        conditionMultiplier = 0.7;
+        conditionMultiplier = 0.7; // Significant mechanical or cosmetic issues
         break;
     }
     
-    // Calculate value
-    const estimatedValue = Math.max(0, (baseValue + yearAdjustment + mileageAdjustment) * conditionMultiplier);
+    // Small boost for popular car colors
+    const popularColors = ['black', 'white', 'silver', 'gray', 'blue'];
+    if (tradeInForm.color && popularColors.includes(tradeInForm.color.toLowerCase())) {
+      conditionMultiplier += 0.03; // 3% boost for popular colors
+    }
+    
+    // Calculate final value
+    const estimatedValue = Math.max(
+      500, // Minimum value
+      (baseValue + yearAdjustment + mileageAdjustment) * makeModelMultiplier * conditionMultiplier
+    );
     
     // Update calculator
     setCalculatorState({
@@ -237,14 +287,36 @@ export default function VehicleDetailPage({ params }: { params: { id: string } }
       tradeInValue: Math.round(estimatedValue)
     });
     
-    // Show in alert
-    alert(`Estimated Trade-In Value: $${Math.round(estimatedValue).toLocaleString()}`);
+    // Show in alert with more detailed information
+    alert(`
+Estimated Trade-In Value: $${Math.round(estimatedValue).toLocaleString()}
+
+Vehicle Details:
+${year} ${make} ${model}
+${color ? color + ', ' : ''}${condition} condition
+${mileage.toLocaleString()} miles
+
+This is an estimated value based on current market conditions. 
+Actual trade-in offers may vary.
+    `);
   };
   
   const handleTradeInChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     
-    if (name === 'year' || name === 'mileage') {
+    // Special handling for make selection - update available models
+    if (name === 'make') {
+      setTradeInForm({
+        ...tradeInForm,
+        make: value,
+        model: '' // Reset model when make changes
+      });
+      
+      // Update available models when make changes
+      const models = getModelsByMake(value);
+      setAvailableModels(models);
+    } 
+    else if (name === 'year' || name === 'mileage') {
       setTradeInForm({
         ...tradeInForm,
         [name]: parseInt(value) || 0
@@ -688,28 +760,39 @@ export default function VehicleDetailPage({ params }: { params: { id: string } }
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Make
                 </label>
-                <input
-                  type="text"
+                <select
                   value={tradeInForm.make}
                   onChange={handleTradeInChange}
                   name="make"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="e.g. Honda, Toyota, Ford"
-                />
+                >
+                  <option value="">Select a make</option>
+                  {availableMakes.map((make) => (
+                    <option key={make} value={make}>
+                      {make}
+                    </option>
+                  ))}
+                </select>
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Model
                 </label>
-                <input
-                  type="text"
+                <select
                   value={tradeInForm.model}
                   onChange={handleTradeInChange}
                   name="model"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="e.g. Accord, Camry, F-150"
-                />
+                  disabled={!tradeInForm.make}
+                >
+                  <option value="">Select a model</option>
+                  {availableModels.map((model) => (
+                    <option key={model} value={model}>
+                      {model}
+                    </option>
+                  ))}
+                </select>
               </div>
               
               <div>
@@ -729,19 +812,162 @@ export default function VehicleDetailPage({ params }: { params: { id: string } }
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Condition
+                  Color
                 </label>
                 <select
-                  value={tradeInForm.condition}
+                  value={tradeInForm.color}
                   onChange={handleTradeInChange}
-                  name="condition"
+                  name="color"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                 >
-                  <option value="Excellent">Excellent</option>
-                  <option value="Good">Good</option>
-                  <option value="Fair">Fair</option>
-                  <option value="Poor">Poor</option>
+                  <option value="">Select a color</option>
+                  <option value="Black">Black</option>
+                  <option value="White">White</option>
+                  <option value="Silver">Silver</option>
+                  <option value="Gray">Gray</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Red">Red</option>
+                  <option value="Green">Green</option>
+                  <option value="Brown">Brown</option>
+                  <option value="Yellow">Yellow</option>
+                  <option value="Orange">Orange</option>
+                  <option value="Purple">Purple</option>
+                  <option value="Gold">Gold</option>
+                  <option value="Beige">Beige</option>
+                  <option value="Other">Other</option>
                 </select>
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Vehicle Condition
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                  {/* Excellent Condition */}
+                  <div 
+                    className={`border rounded-lg p-3 cursor-pointer transition ${
+                      tradeInForm.condition === 'Excellent' 
+                        ? 'border-indigo-500 bg-indigo-50' 
+                        : 'border-gray-300 hover:border-indigo-300'
+                    }`}
+                    onClick={() => setTradeInForm({...tradeInForm, condition: 'Excellent'})}
+                  >
+                    <div className="flex items-center mb-1">
+                      <input 
+                        type="radio" 
+                        name="condition-radio" 
+                        checked={tradeInForm.condition === 'Excellent'} 
+                        onChange={() => {}} 
+                        className="h-4 w-4 text-indigo-600"
+                      />
+                      <span className="ml-2 font-medium">Excellent</span>
+                    </div>
+                    <p className="text-xs font-semibold text-indigo-800">2% of cars we value</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Looks new and is in excellent mechanical condition. No visible wear and tear.
+                    </p>
+                  </div>
+                  
+                  {/* Very Good Condition */}
+                  <div 
+                    className={`border rounded-lg p-3 cursor-pointer transition ${
+                      tradeInForm.condition === 'Very Good' 
+                        ? 'border-indigo-500 bg-indigo-50' 
+                        : 'border-gray-300 hover:border-indigo-300'
+                    }`}
+                    onClick={() => setTradeInForm({...tradeInForm, condition: 'Very Good'})}
+                  >
+                    <div className="flex items-center mb-1">
+                      <input 
+                        type="radio" 
+                        name="condition-radio" 
+                        checked={tradeInForm.condition === 'Very Good'} 
+                        onChange={() => {}} 
+                        className="h-4 w-4 text-indigo-600"
+                      />
+                      <span className="ml-2 font-medium">Very Good</span>
+                    </div>
+                    <p className="text-xs font-semibold text-indigo-800">28% of cars we value</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Has minor cosmetic defects and is in good mechanical condition.
+                    </p>
+                  </div>
+                  
+                  {/* Good Condition */}
+                  <div 
+                    className={`border rounded-lg p-3 cursor-pointer transition ${
+                      tradeInForm.condition === 'Good' 
+                        ? 'border-indigo-500 bg-indigo-50' 
+                        : 'border-gray-300 hover:border-indigo-300'
+                    }`}
+                    onClick={() => setTradeInForm({...tradeInForm, condition: 'Good'})}
+                  >
+                    <div className="flex items-center mb-1">
+                      <input 
+                        type="radio" 
+                        name="condition-radio" 
+                        checked={tradeInForm.condition === 'Good'} 
+                        onChange={() => {}} 
+                        className="h-4 w-4 text-indigo-600"
+                      />
+                      <span className="ml-2 font-medium">Good</span>
+                    </div>
+                    <p className="text-xs font-semibold text-indigo-800">50% of cars we value</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Has repairable cosmetic defects and minor mechanical problems.
+                    </p>
+                  </div>
+                  
+                  {/* Fair Condition */}
+                  <div 
+                    className={`border rounded-lg p-3 cursor-pointer transition ${
+                      tradeInForm.condition === 'Fair' 
+                        ? 'border-indigo-500 bg-indigo-50' 
+                        : 'border-gray-300 hover:border-indigo-300'
+                    }`}
+                    onClick={() => setTradeInForm({...tradeInForm, condition: 'Fair'})}
+                  >
+                    <div className="flex items-center mb-1">
+                      <input 
+                        type="radio" 
+                        name="condition-radio" 
+                        checked={tradeInForm.condition === 'Fair'} 
+                        onChange={() => {}} 
+                        className="h-4 w-4 text-indigo-600"
+                      />
+                      <span className="ml-2 font-medium">Fair</span>
+                    </div>
+                    <p className="text-xs font-semibold text-indigo-800">20% of cars we value</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Requires some mechanical repairs and has noticeable cosmetic flaws.
+                    </p>
+                  </div>
+                  
+                  {/* Poor Condition */}
+                  <div 
+                    className={`border rounded-lg p-3 cursor-pointer transition ${
+                      tradeInForm.condition === 'Poor' 
+                        ? 'border-indigo-500 bg-indigo-50' 
+                        : 'border-gray-300 hover:border-indigo-300'
+                    }`}
+                    onClick={() => setTradeInForm({...tradeInForm, condition: 'Poor'})}
+                  >
+                    <div className="flex items-center mb-1">
+                      <input 
+                        type="radio" 
+                        name="condition-radio" 
+                        checked={tradeInForm.condition === 'Poor'} 
+                        onChange={() => {}} 
+                        className="h-4 w-4 text-indigo-600"
+                      />
+                      <span className="ml-2 font-medium">Poor</span>
+                    </div>
+                    <p className="text-xs font-semibold text-gray-800">&lt;1% of cars we value</p>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Significant mechanical or cosmetic issues that affect drivability or safety.
+                    </p>
+                  </div>
+                </div>
               </div>
               
               <div className="pt-2">
