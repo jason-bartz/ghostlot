@@ -1,14 +1,5 @@
 {
-  "version": 2,
   "builds": [
-    {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    },
     {
       "src": "package.json",
       "use": "@vercel/next",
@@ -17,17 +8,6 @@
           "ignoreBuildErrors": true
         }
       }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/",
-      "headers": { "cache-control": "s-maxage=1, stale-while-revalidate" },
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
     }
   ]
 }
