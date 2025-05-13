@@ -6,6 +6,7 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 relative overflow-hidden w-full">
+      {/* This comment is used for testing - purple background */}
       {/* Animated gradient background with more colors */}
       <BackgroundGradientAnimation
         gradientBackgroundStart="rgb(108, 0, 162)"

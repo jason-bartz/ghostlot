@@ -3,6 +3,28 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export async function middleware(req: NextRequest) {
+  // Get the hostname
+  const hostname = req.headers.get('host') || '';
+  const pathname = req.nextUrl.pathname;
+  
+  // Check if this is the main domain (ghostlot.com or www.ghostlot.com, but not app.ghostlot.com)
+  const isMainDomain = hostname.includes('ghostlot.com') && !hostname.includes('app.');
+  const isAppDomain = hostname.includes('app.ghostlot.com');
+  
+  // Log for debugging
+  console.log(`Middleware hostname: ${hostname}, pathname: ${pathname}, isMainDomain: ${isMainDomain}, isAppDomain: ${isAppDomain}`);
+  
+  // If this is the main domain and it's the root path, redirect to the landing page
+  if (isMainDomain && pathname === '/') {
+    console.log('Redirecting to landing page');
+    const url = new URL('/landing', req.url);
+    return NextResponse.rewrite(url);
+  }
+  
+  // If this is the app domain, show the main page with purple background (default route)
+  // We don't need to do anything special here as the main route will handle it
+  
+  // For all other cases, proceed with authentication checks
   const res = NextResponse.next();
 
   // Check for test user cookie - this will bypass all auth for demo purposes
@@ -18,9 +40,6 @@ export async function middleware(req: NextRequest) {
 
     // Refresh session if expired - required for Server Components
     await supabase.auth.getSession();
-
-    // Get the pathname
-    const pathname = req.nextUrl.pathname;
 
     // Skip middleware for static assets and API routes
     if (
@@ -70,7 +89,7 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    // Optional: Match all request paths except for these
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    // Match all request paths except for these
+    '/((?!api|_next/static|_next/image|favicon.ico|assets|static|public).*)',
   ],
 };

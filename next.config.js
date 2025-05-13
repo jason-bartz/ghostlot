@@ -12,6 +12,36 @@ const nextConfig = {
     });
     return config;
   },
+  // Add domain configuration for local testing
+  // In production this would be handled by proper DNS and hosting configuration
+  async rewrites() {
+    return {
+      beforeFiles: [
+        // Handle domain-specific routing
+        {
+          source: '/:path*',
+          has: [
+            {
+              type: 'host',
+              value: 'ghostlot.com|www.ghostlot.com',
+            },
+          ],
+          destination: '/landing',
+        },
+        // App subdomain shows default page (purple background)
+        {
+          source: '/:path*',
+          has: [
+            {
+              type: 'host',
+              value: 'app.ghostlot.com',
+            },
+          ],
+          destination: '/:path*',
+        },
+      ],
+    };
+  },
 }
 
 module.exports = nextConfig
