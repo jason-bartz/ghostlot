@@ -1,5 +1,14 @@
 {
+  "version": 2,
   "builds": [
+    {
+      "src": "server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    },
     {
       "src": "package.json",
       "use": "@vercel/next",
@@ -13,28 +22,12 @@
   "routes": [
     {
       "src": "/",
-      "host": "ghostlot.com",
-      "dest": "/index.html"
-    },
-    {
-      "src": "/",
-      "host": "www.ghostlot.com",
-      "dest": "/index.html"
+      "headers": { "cache-control": "s-maxage=1, stale-while-revalidate" },
+      "dest": "/server.js"
     },
     {
       "src": "/(.*)",
-      "host": "(?:www.)?ghostlot.com", 
-      "dest": "/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "dest": "/server.js"
     }
-  ],
-  "github": {
-    "silent": true
-  }
+  ]
 }
