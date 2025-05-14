@@ -66,32 +66,41 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
       { name: 'Michael Brown', email: 'm.brown@example.com' },
       { name: 'Emma Wilson', email: 'emma.w@example.com' }
     ];
-
-    // First notification - Reservation
-    const timer1 = setTimeout(() => {
+    
+    // Create a function to show random notifications
+    const showRandomNotification = (type: 'reservation' | 'testdrive') => {
+      const randomVehicleIndex = Math.floor(Math.random() * demoVehicles.length);
+      const randomCustomerIndex = Math.floor(Math.random() * demoCustomers.length);
+      
       showNotification({
-        type: 'reservation',
-        vehicle: demoVehicles[0],
-        customer: demoCustomers[0],
+        type,
+        vehicle: demoVehicles[randomVehicleIndex],
+        customer: demoCustomers[randomCustomerIndex],
         autoDismiss: true,
         dismissAfter: 5000,
       });
+    };
+
+    // First notification - Reservation
+    const timer1 = setTimeout(() => {
+      showRandomNotification('reservation');
     }, 3000);
 
     // Second notification - Test Drive (appears 8 seconds after the first one disappears)
     const timer2 = setTimeout(() => {
-      showNotification({
-        type: 'testdrive',
-        vehicle: demoVehicles[1],
-        customer: demoCustomers[1],
-        autoDismiss: true,
-        dismissAfter: 5000,
-      });
+      showRandomNotification('testdrive');
     }, 16000); // 3s initial + 5s display + 8s gap
+    
+    // Set up recurring notifications if in demo mode (every 30-60 seconds)
+    const recurringTimer = setInterval(() => {
+      const randomType = Math.random() > 0.5 ? 'reservation' : 'testdrive';
+      showRandomNotification(randomType);
+    }, Math.random() * 30000 + 30000); // Random interval between 30-60 seconds
 
     return () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
+      clearInterval(recurringTimer);
     };
   }, [runDemoMode]);
 
