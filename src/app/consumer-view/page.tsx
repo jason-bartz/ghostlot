@@ -407,6 +407,33 @@ export default function ConsumerView() {
         <h1 className="text-xl font-bold text-center">{dealerInfo.name}</h1>
       </div>
       
+      {/* Vehicle Stats Banner */}
+      <div className="bg-white py-2 shadow-sm relative overflow-x-auto">
+        <div className="flex items-center justify-between max-w-md mx-auto px-4 space-x-2 text-xs text-gray-700">
+          <div className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+            </svg>
+            <span>{238} views</span>
+          </div>
+          <div className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
+              <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
+            </svg>
+            <span>{42} saved</span>
+          </div>
+          <div className="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+              <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-5h2a2 2 0 001.44-3.39l-1.787-1.787A2 2 0 0011.22 4H3zM17 8a2 2 0 00-2-2h-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v1H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v1H3V8h4a1 1 0 100-2V5h2v1a1 1 0 100 2h5.034l1.789 1.789A2 2 0 0117 13h-3v-1a1 1 0 00-1-1h-2a1 1 0 00-1 1v1H9a1 1 0 00-1 1v3h1.05a2.5 2.5 0 014.9 0H15a1 1 0 001-1v-4h1V8z" />
+            </svg>
+            <span>{testDriveAppointments.length} pending test drives</span>
+          </div>
+        </div>
+      </div>
+            
       {/* Photo Carousel */}
       <div className="relative overflow-hidden">
         <div className="flex items-center justify-center">
