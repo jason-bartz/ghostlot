@@ -1,0 +1,26 @@
+/* 
+ * Banner Fix - ensures the stats banner is always visible in all environments
+ */
+
+.stats-banner {
+  display: block !important;
+  visibility: visible !important;
+  position: relative !important;
+  z-index: 10 !important;
+  opacity: 1 !important;
+  height: auto !important;
+  overflow: visible !important;
+  transform: none !important;
+  pointer-events: auto !important;
+}
+
+.stats-banner-content {
+  display: flex !important;
+  visibility: visible !important;
+}
+
+/* Fix to ensure flex content displays correctly */
+.stats-banner-item {
+  display: flex !important;
+  align-items: center !important;
+}

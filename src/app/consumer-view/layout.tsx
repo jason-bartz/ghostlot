@@ -1,4 +1,5 @@
 import '../globals.css';
+import './banner-fix.css'; // Import the banner fix CSS
 import { Inter } from 'next/font/google';
 import type { Metadata } from 'next';
 
