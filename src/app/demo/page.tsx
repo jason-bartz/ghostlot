@@ -31,7 +31,7 @@ export default function DemoPage() {
           </p>
         </header>
         
-        <main className="w-full max-w-[950px] mb-6">
+        <main className="w-full max-w-[1160px] mb-6">
           <LandingDemoDashboard />
         </main>
         
