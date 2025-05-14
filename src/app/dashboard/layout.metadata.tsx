@@ -7,7 +7,15 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'GhostLot™ - Don\'t Ghost Your Leads - Dashboard',
     description: 'Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place.',
-    images: ['/opengraph-2.webp'],
+    images: [
+      {
+        url: '/opengraph-2.webp',
+        width: 1200,
+        height: 630,
+        alt: 'GhostLot - Don\'t Ghost Your Leads'
+      }
+    ],
+    url: 'https://app.ghostlot.com/dashboard',
     siteName: 'GhostLot™',
   },
   twitter: {

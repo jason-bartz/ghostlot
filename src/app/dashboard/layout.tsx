@@ -56,7 +56,10 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
         <meta name="description" content="Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place." />
         <meta property="og:title" content="GhostLot™ - Don't Ghost Your Leads - Dashboard" />
         <meta property="og:description" content="Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place." />
-        <meta property="og:image" content="/opengraph-2.webp" />
+        <meta property="og:image" content="https://ghostlot.com/opengraph-2.webp" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://app.ghostlot.com/dashboard" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="GhostLot™" />
         <meta name="twitter:card" content="summary_large_image" />

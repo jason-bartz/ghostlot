@@ -18,7 +18,15 @@ export const metadata: Metadata = {
     type: 'website',
     title: 'GhostLot™ - Don\'t Ghost Your Leads',
     description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
-    images: ['/opengraph-2.webp'],
+    images: [
+      {
+        url: '/opengraph-2.webp',
+        width: 1200,
+        height: 630,
+        alt: 'GhostLot - Don\'t Ghost Your Leads'
+      }
+    ],
+    url: 'https://ghostlot.com',
     siteName: 'GhostLot™',
   },
   twitter: {
