@@ -17,6 +17,19 @@ export default function ConsumerViewDemo() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [showReservationFlow, setShowReservationFlow] = useState(false);
+  const [reservationStep, setReservationStep] = useState(1);
+  const [reservationData, setReservationData] = useState({
+    acknowledge1: false,
+    acknowledge2: false,
+    hasTrade: false,
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    zipCode: '',
+    agreeToRules: false
+  });
   
   // Mock vehicle data
   const vehicle = {
@@ -247,6 +260,13 @@ export default function ConsumerViewDemo() {
               </svg>
               <span>42 saved</span>
             </div>
+            <div className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 mr-1 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1v-5h2a2 2 0 001.44-3.39l-1.787-1.787A2 2 0 0011.22 4H3zM17 8a2 2 0 00-2-2h-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v1H9V5a1 1 0 00-1-1H6a1 1 0 00-1 1v1H3V8h4a1 1 0 100-2V5h2v1a1 1 0 100 2h5.034l1.789 1.789A2 2 0 0117 13h-3v-1a1 1 0 00-1-1h-2a1 1 0 00-1 1v1H9a1 1 0 00-1 1v3h1.05a2.5 2.5 0 014.9 0H15a1 1 0 001-1v-4h1V8z" />
+              </svg>
+              <span>2 pending test drives</span>
+            </div>
           </div>
         </div>
         
@@ -341,11 +361,33 @@ export default function ConsumerViewDemo() {
             </button>
             
             <button
+              onClick={() => toggleSection('reviews')}
+              className="w-full py-2 px-3 flex justify-between items-center shadow-sm text-xs"
+              style={getButtonStyle()}
+            >
+              <span>Expert Reviews</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+            
+            <button
               onClick={() => toggleSection('calculator')}
               className="w-full py-2 px-3 flex justify-between items-center shadow-sm text-xs"
               style={getButtonStyle()}
             >
               <span>Payment Calculator</span>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
+            
+            <button
+              onClick={() => toggleSection('trade-in')}
+              className="w-full py-2 px-3 flex justify-between items-center shadow-sm text-xs"
+              style={getButtonStyle()}
+            >
+              <span>Trade-In Value</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
@@ -358,6 +400,14 @@ export default function ConsumerViewDemo() {
             >
               <span>Schedule Test Drive</span>
               <ArrowUpRight className="h-4 w-4" />
+            </button>
+            
+            <button
+              onClick={() => setShowReservationFlow(true)}
+              className="w-full py-2 px-3 shadow-sm text-xs"
+              style={getButtonStyle()}
+            >
+              Reserve This Vehicle
             </button>
           </div>
         </div>
@@ -410,6 +460,208 @@ export default function ConsumerViewDemo() {
                   </li>
                 ))}
               </ul>
+            </div>
+          )}
+          
+          {/* Reviews Section */}
+          {activeSection === 'reviews' && (
+            <div>
+              <div className="bg-white rounded-lg shadow-md p-3 mb-3 mt-3 text-xs">
+                <h3 className="text-sm font-medium mb-3">Expert Reviews</h3>
+                
+                <div className="mb-3 pb-3 border-b border-gray-200">
+                  <div className="flex items-center mb-1.5">
+                    <a 
+                      href="https://www.caranddriver.com/toyota/camry-2023" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-indigo-600"
+                    >
+                      Car and Driver
+                    </a>
+                    <div className="ml-2 flex">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg key={star} className="h-3 w-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <div className="ml-2 text-xs text-gray-600">9.0/10</div>
+                  </div>
+                  <p className="text-xs text-gray-700">
+                    "The Toyota Camry continues to be a benchmark in the midsize sedan category, offering an excellent blend of comfort, technology, and driving dynamics."
+                  </p>
+                </div>
+                
+                <div className="mb-3 pb-3 border-b border-gray-200">
+                  <div className="flex items-center mb-1.5">
+                    <a 
+                      href="https://www.motortrend.com/cars/toyota/camry/2023" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-indigo-600"
+                    >
+                      Motor Trend
+                    </a>
+                    <div className="ml-2 flex">
+                      {[1, 2, 3, 4].map((star) => (
+                        <svg key={star} className="h-3 w-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                      <svg className="h-3 w-3 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    </div>
+                    <div className="ml-2 text-xs text-gray-600">8.5/10</div>
+                  </div>
+                  <p className="text-xs text-gray-700">
+                    "The XLE trim offers premium features that rival luxury brands at a more accessible price point. The refined drivetrain and comfortable ride provide an excellent driving experience."
+                  </p>
+                </div>
+                
+                <div>
+                  <div className="flex items-center mb-1.5">
+                    <a 
+                      href="https://www.edmunds.com/toyota/camry/2023/review/" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-bold text-indigo-600"
+                    >
+                      Edmunds
+                    </a>
+                    <div className="ml-2 flex">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg key={star} className="h-3 w-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <div className="ml-2 text-xs text-gray-600">4.6/5</div>
+                  </div>
+                  <p className="text-xs text-gray-700">
+                    "Excellent reliability ratings and safety scores make the Camry a smart long-term choice. The XLE trim's premium features and comfortable ride quality impressed our testers."
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-white rounded-lg shadow-md p-3">
+                <h3 className="text-sm font-medium mb-3">Video Reviews</h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded mb-2">
+                      <iframe 
+                        className="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/Az9CigwShBw" 
+                        title="2023 Toyota Camry XLE Review"
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen>
+                      </iframe>
+                    </div>
+                    <h4 className="text-xs font-medium">2023 Toyota Camry Review - The Good & The Bad</h4>
+                    <p className="text-xs text-gray-600">Redline Reviews • 132K views</p>
+                  </div>
+                  
+                  <div>
+                    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded mb-2">
+                      <iframe 
+                        className="absolute top-0 left-0 w-full h-full"
+                        src="https://www.youtube.com/embed/Hg2qLOlZPoo" 
+                        title="2023 Toyota Camry XLE Review"
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen>
+                      </iframe>
+                    </div>
+                    <h4 className="text-xs font-medium">2023 Toyota Camry XLE - Test Drive & Review</h4>
+                    <p className="text-xs text-gray-600">Motortrend • 207K views</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Trade-In Section */}
+          {activeSection === 'trade-in' && (
+            <div className="bg-white rounded-lg shadow-md p-3 mt-3 text-xs">
+              <h3 className="text-sm font-medium mb-3">Get Trade-In Value</h3>
+              
+              <div className="space-y-3">
+                <p className="text-xs text-gray-700">
+                  Enter your vehicle information to get an estimated trade-in value.
+                </p>
+                
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    Vehicle Year
+                  </label>
+                  <select 
+                    className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                  >
+                    <option value="">Select Year</option>
+                    {Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                      <option key={year} value={year}>{year}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    Make
+                  </label>
+                  <select 
+                    className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                  >
+                    <option value="">Select Make</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Tesla">Tesla</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    Model
+                  </label>
+                  <select 
+                    className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                  >
+                    <option value="">Select Model</option>
+                    <option value="Accord">Accord</option>
+                    <option value="Civic">Civic</option>
+                    <option value="CR-V">CR-V</option>
+                    <option value="Camry">Camry</option>
+                    <option value="Corolla">Corolla</option>
+                    <option value="RAV4">RAV4</option>
+                    <option value="F-150">F-150</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">
+                    Mileage
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Enter vehicle mileage"
+                    className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                  />
+                </div>
+                
+                <div className="pt-1">
+                  <button
+                    className="w-full bg-indigo-600 text-white px-3 py-1.5 rounded-md text-xs font-medium hover:bg-indigo-700"
+                    onClick={() => alert('Estimated Trade-In Value: $8,500')}
+                  >
+                    Get Trade-In Value
+                  </button>
+                </div>
+              </div>
             </div>
           )}
           
@@ -658,6 +910,206 @@ export default function ConsumerViewDemo() {
                   Schedule Test Drive
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Vehicle Reservation Flow */}
+      {showReservationFlow && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-xs w-full max-h-[90vh] overflow-y-auto">
+            <div className="px-4 py-3 bg-gray-100">
+              <h2 className="text-sm font-bold text-gray-900">Set Up Your Order:</h2>
+              <p className="text-xs text-gray-700">You're only a few clicks away before we get you set up with your new ride.</p>
+            </div>
+            
+            <div className="p-4">
+              {reservationStep === 1 && (
+                <div>
+                  <h3 className="text-xs font-medium mb-4">1. Acknowledgement</h3>
+                  
+                  <div className="space-y-3">
+                    <label className="flex items-start">
+                      <input 
+                        type="checkbox"
+                        className="h-4 w-4 mt-0.5 text-indigo-600 border-gray-300 rounded"
+                        checked={reservationData.acknowledge1}
+                        onChange={e => setReservationData({...reservationData, acknowledge1: e.target.checked})}
+                      />
+                      <span className="ml-2 text-xs text-gray-700">This is the vehicle I want</span>
+                    </label>
+                    
+                    <label className="flex items-start">
+                      <input 
+                        type="checkbox"
+                        className="h-4 w-4 mt-0.5 text-indigo-600 border-gray-300 rounded"
+                        checked={reservationData.acknowledge2}
+                        onChange={e => setReservationData({...reservationData, acknowledge2: e.target.checked})}
+                      />
+                      <span className="ml-2 text-xs text-gray-700">I understand that the deposit paid will be held by the dealer against this selected vehicle.</span>
+                    </label>
+                    
+                    <label className="flex items-start">
+                      <input 
+                        type="checkbox"
+                        className="h-4 w-4 mt-0.5 text-indigo-600 border-gray-300 rounded"
+                        checked={reservationData.hasTrade}
+                        onChange={e => setReservationData({...reservationData, hasTrade: e.target.checked})}
+                      />
+                      <span className="ml-2 text-xs text-gray-700">I have a trade-in (optional)</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+              
+              {reservationStep === 2 && (
+                <div>
+                  <h3 className="text-xs font-medium mb-3">2. Vehicle Pickup</h3>
+                  
+                  <p className="text-xs text-gray-700 mb-3">
+                    The dealership will be in contact to coordinate pickup details.
+                  </p>
+                </div>
+              )}
+              
+              {reservationStep === 3 && (
+                <div>
+                  <h3 className="text-xs font-medium mb-4">3. Enter Personal Details</h3>
+                  
+                  <div className="grid grid-cols-2 gap-3 mb-3">
+                    <div>
+                      <input 
+                        type="text"
+                        placeholder="First name"
+                        className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                        value={reservationData.firstName}
+                        onChange={e => setReservationData({...reservationData, firstName: e.target.value})}
+                      />
+                    </div>
+                    
+                    <div>
+                      <input 
+                        type="text"
+                        placeholder="Last name"
+                        className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                        value={reservationData.lastName}
+                        onChange={e => setReservationData({...reservationData, lastName: e.target.value})}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="mb-3">
+                    <input 
+                      type="email"
+                      placeholder="Email"
+                      className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                      value={reservationData.email}
+                      onChange={e => setReservationData({...reservationData, email: e.target.value})}
+                    />
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <input 
+                        type="tel"
+                        placeholder="Phone"
+                        className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                        value={reservationData.phone}
+                        onChange={e => setReservationData({...reservationData, phone: e.target.value})}
+                      />
+                    </div>
+                    
+                    <div>
+                      <input 
+                        type="text"
+                        placeholder="Zip Code"
+                        className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
+                        value={reservationData.zipCode}
+                        onChange={e => setReservationData({...reservationData, zipCode: e.target.value})}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {reservationStep === 4 && (
+                <div>
+                  <h3 className="text-xs font-medium mb-4">4. Deposit</h3>
+                  
+                  <label className="flex items-start mb-3">
+                    <input 
+                      type="checkbox"
+                      className="h-4 w-4 mt-0.5 text-indigo-600 border-gray-300 rounded"
+                      checked={reservationData.agreeToRules}
+                      onChange={e => setReservationData({...reservationData, agreeToRules: e.target.checked})}
+                    />
+                    <span className="ml-2 text-xs text-gray-700">
+                      I understand the <span className="font-medium text-black">rules and policies</span>.
+                    </span>
+                  </label>
+                  
+                  <div className="mb-4 text-xs text-gray-700">
+                    <p>Deposit paid to Refraction Motors is a Down Payment to hold the specific vehicle until the depositor completes the sale directly from the dealership.</p>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <h4 className="text-sm font-bold">Deposit Amount: $500.00</h4>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <div className="border border-gray-300 rounded-md px-3 py-2 bg-gray-50 flex items-center">
+                      <span className="text-gray-400 mr-2">💳</span>
+                      <input 
+                        type="text"
+                        placeholder="Card number"
+                        className="flex-grow bg-transparent border-none focus:outline-none text-xs text-gray-700"
+                      />
+                      <input 
+                        type="text"
+                        placeholder="MM / YY  CVC"
+                        className="w-20 bg-transparent border-none focus:outline-none text-xs text-gray-700 text-right"
+                      />
+                    </div>
+                  </div>
+                  
+                  <button
+                    className="w-full bg-indigo-600 text-white py-2 px-3 rounded-full text-xs font-medium hover:bg-indigo-700"
+                    onClick={() => {
+                      alert('Vehicle reserved successfully!');
+                      setShowReservationFlow(false);
+                    }}
+                    disabled={!reservationData.agreeToRules}
+                  >
+                    Make Down Payment
+                  </button>
+                </div>
+              )}
+              
+              {reservationStep < 4 && (
+                <div className="flex justify-between mt-6">
+                  <button
+                    onClick={() => {
+                      if (reservationStep > 1) {
+                        setReservationStep(reservationStep - 1);
+                      } else {
+                        setShowReservationFlow(false);
+                      }
+                    }}
+                    className="bg-white border border-gray-300 rounded-md px-3 py-1.5 text-xs font-medium text-gray-700"
+                  >
+                    {reservationStep === 1 ? 'Cancel' : 'Back'}
+                  </button>
+                  
+                  <button
+                    onClick={() => setReservationStep(reservationStep + 1)}
+                    className="bg-indigo-600 text-white px-3 py-1.5 rounded-md text-xs font-medium"
+                    disabled={reservationStep === 1 && !(reservationData.acknowledge1 && reservationData.acknowledge2)}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
