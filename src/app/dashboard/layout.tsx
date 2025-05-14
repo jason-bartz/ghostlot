@@ -52,17 +52,17 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Head>
-        <title>GhostLot™ Dealer Dashboard</title>
+        <title>GhostLot™ - Don't Ghost Your Leads - Dashboard</title>
         <meta name="description" content="Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place." />
-        <meta property="og:title" content="GhostLot™ Dealer Dashboard" />
+        <meta property="og:title" content="GhostLot™ - Don't Ghost Your Leads - Dashboard" />
         <meta property="og:description" content="Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place." />
-        <meta property="og:image" content="/opengraph.webp" />
+        <meta property="og:image" content="/opengraph-2.webp" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="GhostLot™" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="GhostLot™ Dealer Dashboard" />
+        <meta name="twitter:title" content="GhostLot™ - Don't Ghost Your Leads - Dashboard" />
         <meta name="twitter:description" content="Manage your dealership inventory, QR codes, test drives, reservations, and analytics in one place." />
-        <meta name="twitter:image" content="/opengraph.webp" />
+        <meta name="twitter:image" content="/opengraph-2.webp" />
       </Head>
       <div className="flex h-screen bg-gray-100 overflow-hidden">
         {/* Sidebar */}

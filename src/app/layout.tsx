@@ -6,7 +6,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'GhostLot™ - Your Lot. Alive After Hours.',
+  title: 'GhostLot™ - Don\'t Ghost Your Leads',
   description: 'GhostLot™ connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://ghostlot.com'),
   keywords: ['car dealership software', 'automotive digital retailing', 'QR code inventory', 'dealership tech', 'after hours car shopping'],
@@ -16,16 +16,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    title: 'GhostLot™ - Your Lot. Alive After Hours.',
+    title: 'GhostLot™ - Don\'t Ghost Your Leads',
     description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
-    images: ['/opengraph.webp'],
+    images: ['/opengraph-2.webp'],
     siteName: 'GhostLot™',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GhostLot™ - Your Lot. Alive After Hours.',
+    title: 'GhostLot™ - Don\'t Ghost Your Leads',
     description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
-    images: ['/opengraph.webp'],
+    images: ['/opengraph-2.webp'],
   },
 };
 
