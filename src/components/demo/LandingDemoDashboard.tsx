@@ -13,7 +13,7 @@ export default function LandingDemoDashboard() {
       <style jsx>{`
         .landing-demo-container {
           position: relative;
-          max-width: 900px;
+          max-width: 940px;
           margin: 0 auto;
           border-radius: 16px;
           overflow: hidden;
