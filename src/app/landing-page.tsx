@@ -961,6 +961,37 @@ export default function LandingPage() {
             </div>
         </div>
     </section>
+    
+    <section class="section" id="demo" aria-label="GhostLot Dealership Demo" style="background: radial-gradient(circle at center, var(--gray-dark), var(--darker));">
+        <div class="container">
+            <div class="section-header">
+                <h2>See the Dealership Dashboard in Action</h2>
+                <p>Watch how easily dealers can manage inventory, generate QR codes, track leads, and measure engagement with GhostLot's intuitive dashboard.</p>
+            </div>
+            <div style="position: relative; max-width: 900px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border: 1px solid var(--gray-light);">
+                <video 
+                    src="/website/dealer-view.mov" 
+                    autoplay 
+                    loop 
+                    muted 
+                    playsinline
+                    style="width: 100%; display: block; border-radius: 8px;"
+                    poster="/website/desktop-image.png"
+                    aria-label="Video demonstration of the GhostLot dealership dashboard interface"
+                ></video>
+                <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(5, 10, 26, 0.95), transparent); text-align: center;">
+                    <p style="color: white; font-size: 1.125rem; font-weight: 500; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">
+                        Powerful tools to connect with customers 24/7
+                    </p>
+                </div>
+                <div style="position: absolute; top: 15px; right: 15px; background: rgba(139, 92, 246, 0.9); padding: 0.5rem 1rem; border-radius: 9999px; backdrop-filter: blur(4px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
+                    <p style="margin: 0; color: white; font-size: 0.875rem; font-weight: 600;">
+                        Live Demo
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section class="section" aria-label="Join GhostLot Waitlist">
         <div class="container">
