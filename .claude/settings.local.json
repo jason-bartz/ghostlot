@@ -21,7 +21,9 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(node test-domains.js)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(chmod:*)",
+      "Bash(node:*)"
     ],
     "deny": []
   }

@@ -347,10 +347,32 @@ const routeModule = new AppPageRouteModule({
 
 /***/ }),
 
+/***/ 74460:
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 31573))
+
+/***/ }),
+
 /***/ 46146:
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
 Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 6832))
+
+/***/ }),
+
+/***/ 31573:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ AuthLayout)
+/* harmony export */ });
+/* __next_internal_client_entry_do_not_use__ default auto */ function AuthLayout({ children }) {
+    return children;
+}
+
 
 /***/ }),
 
@@ -538,6 +560,32 @@ function LoginPage() {
 
 /***/ }),
 
+/***/ 5948:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   $$typeof: () => (/* binding */ $$typeof),
+/* harmony export */   __esModule: () => (/* binding */ __esModule),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(61363);
+
+const proxy = (0,next_dist_build_webpack_loaders_next_flight_loader_module_proxy__WEBPACK_IMPORTED_MODULE_0__.createProxy)(String.raw`/Users/jasonbartz/GhostLot/src/app/(auth)/layout.tsx`)
+
+// Accessing the __esModule property and exporting $$typeof are required here.
+// The __esModule getter forces the proxy target to create the default export
+// and the $$typeof value is for rendering logic to determine if the module
+// is a client boundary.
+const { __esModule, $$typeof } = proxy;
+const __default__ = proxy.default;
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__default__);
+
+/***/ }),
+
 /***/ 50733:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -571,7 +619,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [630,450,270], () => (__webpack_exec__(8181)));
+var __webpack_exports__ = __webpack_require__.X(0, [630,837], () => (__webpack_exec__(8181)));
 module.exports = __webpack_exports__;
 
 })();
