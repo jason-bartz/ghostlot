@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Check if the consumer-view page files have been modified
+if git diff --cached --name-only | grep -q "src/app/consumer-view/page.tsx"; then
+  echo "Consumer view page.tsx has been modified, checking sync with page-fixed.tsx..."
+  
+  # Run the sync check
+  node sync-check.js
+  
+  if [ $? -ne 0 ]; then
+    echo "Error: Sync check failed. Please ensure both page.tsx and page-fixed.tsx are in sync."
+    echo "Either update page-fixed.tsx to match page.tsx, or vice versa."
+    exit 1
+  fi
+fi
+
+# Success
+exit 0

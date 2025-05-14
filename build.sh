@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Run sync check script to ensure page files are in sync before build
+echo "Checking synchronization between page.tsx and page-fixed.tsx..."
+node sync-check.js
+if [ $? -ne 0 ]; then
+  echo "Error: Sync check failed. Please fix the issues before building."
+  exit 1
+fi
+
 # Create tsconfig with less strict typing
 cat > tsconfig.json << 'EOL'
 {

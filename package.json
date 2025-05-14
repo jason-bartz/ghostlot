@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "bash ./build.sh && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-check": "node sync-check.js",
+    "setup-hooks": "git config core.hooksPath .githooks"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.5",
