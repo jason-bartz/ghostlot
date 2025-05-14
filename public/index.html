@@ -202,11 +202,10 @@
 
         .hero {
             margin-top: 0;
-            padding: 10rem 0 6rem;
+            padding: 8rem 0 6rem;
             background: radial-gradient(circle at top right, var(--gray-dark), var(--dark));
             position: relative;
             overflow: hidden;
-            min-height: 100vh;
             display: flex;
             align-items: center;
         }
@@ -226,6 +225,8 @@
             max-width: 650px;
             position: relative;
             z-index: 2;
+            text-align: center;
+            margin: 0 auto;
         }
 
         .hero h1 {
@@ -262,23 +263,41 @@
             50% { transform: translateY(-10px); }
         }
 
+        .hero-image-container {
+            margin-top: 3rem;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
         .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 55%;
+            width: 90%;
+            max-width: 900px;
             height: auto;
             border-radius: 1rem;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.5);
             opacity: 0.95;
             transition: all 0.5s ease;
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .hero-image:hover {
-            transform: translateY(-50%) scale(1.02);
+            transform: scale(1.02);
             opacity: 1;
-            box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 70px rgba(139, 92, 246, 0.7);
+        }
+        
+        .hero-image-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(139, 92, 246, 0.3), transparent 70%);
+            filter: blur(30px);
+            z-index: 1;
         }
 
         .sparkles-container {
@@ -835,8 +854,12 @@
                 <h1>Don't Ghost Your Leads.</h1>
                 <p>GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It's designed to turn every vehicle into an interactive, hyper-mobile experience that works 24/7. Shoppers can view real-time pricing, schedule test drives, estimate payments, and reserve vehicles—all without needing to talk to a salesperson.</p>
                 <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+                
+                <div class="hero-image-container">
+                    <div class="hero-image-glow"></div>
+                    <img src="/website/website-demo.gif" alt="GhostLot application interface showing dealer dashboard" class="hero-image" loading="eager" width="900" height="506" />
+                </div>
             </div>
-            <img src="/website/website-demo.gif" alt="GhostLot application interface showing dealer dashboard" class="hero-image" loading="eager" width="700" height="400" />
         </div>
     </section>
 
