@@ -23,7 +23,8 @@
       "Bash(node test-domains.js)",
       "Bash(curl:*)",
       "Bash(chmod:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git rm:*)"
     ],
     "deny": []
   }
