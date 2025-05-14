@@ -19,16 +19,21 @@ export default function ConsumerViewDemo() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [showReservationFlow, setShowReservationFlow] = useState(false);
   const [reservationStep, setReservationStep] = useState(1);
+  const [showProfileView, setShowProfileView] = useState(false);
+  const [activeProfileTab, setActiveProfileTab] = useState('saved');
   const [reservationData, setReservationData] = useState({
     acknowledge1: false,
     acknowledge2: false,
     hasTrade: false,
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    zipCode: '',
-    agreeToRules: false
+    firstName: 'John',
+    lastName: 'Smith',
+    email: 'john.smith@example.com',
+    phone: '(555) 123-4567',
+    zipCode: '14207',
+    agreeToRules: false,
+    cardNumber: '4242 4242 4242 4242',
+    expiry: '12/25',
+    cvc: '123'
   });
   
   // Mock vehicle data
@@ -75,6 +80,76 @@ export default function ConsumerViewDemo() {
     text_color: '#FFFFFF'
   };
   
+  // Mock saved vehicles
+  const savedVehicles = [
+    {
+      id: 'sv1',
+      make: 'Toyota',
+      model: 'Camry',
+      year: 2023,
+      trim: 'XLE',
+      price: 32970,
+      imageUrl: '/demo-vehicle/camry1.webp',
+      dealerName: 'Refraction Motors',
+      location: 'Buffalo, NY'
+    },
+    {
+      id: 'sv2',
+      make: 'Honda',
+      model: 'Accord',
+      year: 2023,
+      trim: 'Touring',
+      price: 38050,
+      imageUrl: '/saved-vehicles/honda.jpg',
+      dealerName: 'Auto Excellence',
+      location: 'Rochester, NY'
+    },
+    {
+      id: 'sv3',
+      make: 'Tesla',
+      model: 'Model 3',
+      year: 2023,
+      trim: 'Long Range',
+      price: 47990,
+      imageUrl: '/saved-vehicles/tesla.jpg',
+      dealerName: 'Modern EV Solutions',
+      location: 'Syracuse, NY'
+    }
+  ];
+  
+  // Mock scheduled test drives
+  const scheduledTestDrives = [
+    {
+      id: 'td1',
+      make: 'Ford',
+      model: 'Mustang',
+      year: 2023,
+      trim: 'GT Premium',
+      imageUrl: '/saved-vehicles/ford.jpg',
+      dealerName: 'Classic Motors',
+      location: 'Albany, NY',
+      dateTime: 'May 20, 2025 at 2:00 PM'
+    }
+  ];
+  
+  // Mock reservations
+  const reservations = [
+    {
+      id: 'rs1',
+      make: 'Toyota',
+      model: 'Camry',
+      year: 2023,
+      trim: 'XLE',
+      price: 32970,
+      imageUrl: '/saved-vehicles/camry.webp',
+      dealerName: 'Refraction Motors',
+      location: 'Buffalo, NY',
+      status: 'Reserved',
+      depositAmount: 500,
+      reservationDate: 'May 10, 2025'
+    }
+  ];
+  
   // Payment calculator state
   const [calculatorState, setCalculatorState] = useState({
     price: vehicle.price,
@@ -114,9 +189,22 @@ export default function ConsumerViewDemo() {
       setIsUserLoggedIn(true);
       setShowLogin(false);
       setSavedToProfile(true);
+      setLoginName(reservationData.firstName + ' ' + reservationData.lastName);
+      setLoginEmail(reservationData.email);
+      setLoginPhone(reservationData.phone);
       alert('Profile created! Vehicle saved to your profile.');
     } else {
       alert('Please enter your name and either email or phone number.');
+    }
+  };
+  
+  // Toggle profile view
+  const toggleProfileView = () => {
+    if (isUserLoggedIn) {
+      setShowProfileView(!showProfileView);
+      setShowProfileMenu(false);
+    } else {
+      setShowLogin(true);
     }
   };
   
@@ -221,10 +309,20 @@ export default function ConsumerViewDemo() {
                   <p className="text-xs text-gray-500">{loginEmail || 'No email'}</p>
                 </div>
                 <div className="py-1">
-                  <button onClick={() => {
-                    setIsUserLoggedIn(false);
-                    setShowProfileMenu(false);
-                  }} className="flex items-center px-3 py-2 text-xs text-red-600 hover:bg-gray-100 w-full text-left">
+                  <button 
+                    onClick={toggleProfileView} 
+                    className="flex items-center px-3 py-2 text-xs text-gray-700 hover:bg-gray-100 w-full text-left"
+                  >
+                    <User className="h-3 w-3 mr-2" />
+                    My Vehicles
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setIsUserLoggedIn(false);
+                      setShowProfileMenu(false);
+                    }} 
+                    className="flex items-center px-3 py-2 text-xs text-red-600 hover:bg-gray-100 w-full text-left"
+                  >
                     <LogOut className="h-3 w-3 mr-2" />
                     Sign Out
                   </button>
@@ -767,6 +865,132 @@ export default function ConsumerViewDemo() {
         </div>
       </div>
       
+      {/* Profile View Modal */}
+      {showProfileView && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+              <h3 className="text-sm font-medium text-gray-900">My Vehicles</h3>
+              <button 
+                onClick={() => setShowProfileView(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="flex border-b border-gray-200">
+              <button 
+                className={`px-4 py-2 text-xs font-medium ${activeProfileTab === 'saved' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600'}`}
+                onClick={() => setActiveProfileTab('saved')}
+              >
+                Saved Vehicles ({savedVehicles.length})
+              </button>
+              <button 
+                className={`px-4 py-2 text-xs font-medium ${activeProfileTab === 'testdrives' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600'}`}
+                onClick={() => setActiveProfileTab('testdrives')}
+              >
+                Test Drives ({scheduledTestDrives.length})
+              </button>
+              <button 
+                className={`px-4 py-2 text-xs font-medium ${activeProfileTab === 'reservations' ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-gray-600'}`}
+                onClick={() => setActiveProfileTab('reservations')}
+              >
+                Reservations ({reservations.length})
+              </button>
+            </div>
+            
+            <div className="p-4">
+              {/* Saved Vehicles Tab */}
+              {activeProfileTab === 'saved' && (
+                <div className="space-y-4">
+                  {savedVehicles.map(vehicle => (
+                    <div key={vehicle.id} className="border border-gray-200 rounded-md overflow-hidden">
+                      <div className="flex">
+                        <div className="w-1/3">
+                          <img src={vehicle.imageUrl} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} className="w-full h-24 object-cover" />
+                        </div>
+                        <div className="w-2/3 p-2">
+                          <h4 className="text-xs font-medium">{vehicle.year} {vehicle.make} {vehicle.model} {vehicle.trim}</h4>
+                          <p className="text-xs text-indigo-600 font-bold">${vehicle.price.toLocaleString()}</p>
+                          <p className="text-xs text-gray-600 mt-1">{vehicle.dealerName}</p>
+                          <p className="text-xs text-gray-500">{vehicle.location}</p>
+                          <div className="mt-2 flex justify-end">
+                            <button className="text-xs text-indigo-600 font-medium">View Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
+              {/* Test Drives Tab */}
+              {activeProfileTab === 'testdrives' && (
+                <div className="space-y-4">
+                  {scheduledTestDrives.map(testDrive => (
+                    <div key={testDrive.id} className="border border-gray-200 rounded-md overflow-hidden">
+                      <div className="flex">
+                        <div className="w-1/3">
+                          <img src={testDrive.imageUrl} alt={`${testDrive.year} ${testDrive.make} ${testDrive.model}`} className="w-full h-24 object-cover" />
+                        </div>
+                        <div className="w-2/3 p-2">
+                          <h4 className="text-xs font-medium">{testDrive.year} {testDrive.make} {testDrive.model} {testDrive.trim}</h4>
+                          <div className="flex items-center mt-1">
+                            <Calendar className="h-3 w-3 text-indigo-600 mr-1" />
+                            <p className="text-xs text-gray-700">{testDrive.dateTime}</p>
+                          </div>
+                          <p className="text-xs text-gray-600 mt-1">{testDrive.dealerName}</p>
+                          <p className="text-xs text-gray-500">{testDrive.location}</p>
+                          <div className="mt-2 flex justify-end space-x-2">
+                            <button className="text-xs text-gray-600">Reschedule</button>
+                            <button className="text-xs text-indigo-600 font-medium">View Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
+              {/* Reservations Tab */}
+              {activeProfileTab === 'reservations' && (
+                <div className="space-y-4">
+                  {reservations.map(reservation => (
+                    <div key={reservation.id} className="border border-gray-200 rounded-md overflow-hidden">
+                      <div className="flex">
+                        <div className="w-1/3">
+                          <img src={reservation.imageUrl} alt={`${reservation.year} ${reservation.make} ${reservation.model}`} className="w-full h-24 object-cover" />
+                        </div>
+                        <div className="w-2/3 p-2">
+                          <div className="flex justify-between items-start">
+                            <h4 className="text-xs font-medium">{reservation.year} {reservation.make} {reservation.model} {reservation.trim}</h4>
+                            <span className="text-[10px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded-full">{reservation.status}</span>
+                          </div>
+                          <p className="text-xs text-indigo-600 font-bold">${reservation.price.toLocaleString()}</p>
+                          <p className="text-xs text-gray-600 mt-0.5">
+                            <span className="font-medium">Deposit:</span> ${reservation.depositAmount}
+                          </p>
+                          <p className="text-xs text-gray-600">
+                            <span className="font-medium">Reserved on:</span> {reservation.reservationDate}
+                          </p>
+                          <p className="text-xs text-gray-600 mt-1">{reservation.dealerName}</p>
+                          <div className="mt-1 flex justify-end">
+                            <button className="text-xs text-indigo-600 font-medium">View Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* User Login/Profile Creation Modal */}
       {showLogin && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
@@ -789,7 +1013,7 @@ export default function ConsumerViewDemo() {
                     type="text"
                     className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
                     placeholder="Enter your name"
-                    value={loginName}
+                    value={loginName || `${reservationData.firstName} ${reservationData.lastName}`}
                     onChange={(e) => setLoginName(e.target.value)}
                   />
                 </div>
@@ -802,7 +1026,7 @@ export default function ConsumerViewDemo() {
                     type="email"
                     className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
                     placeholder="Enter your email"
-                    value={loginEmail}
+                    value={loginEmail || reservationData.email}
                     onChange={(e) => setLoginEmail(e.target.value)}
                   />
                 </div>
@@ -815,7 +1039,7 @@ export default function ConsumerViewDemo() {
                     type="tel"
                     className="w-full px-2 py-1.5 text-xs border border-gray-300 rounded-md"
                     placeholder="Enter your phone number"
-                    value={loginPhone}
+                    value={loginPhone || reservationData.phone}
                     onChange={(e) => setLoginPhone(e.target.value)}
                   />
                 </div>
@@ -1062,13 +1286,24 @@ export default function ConsumerViewDemo() {
                       <span className="text-gray-400 mr-2">💳</span>
                       <input 
                         type="text"
-                        placeholder="Card number"
+                        value={reservationData.cardNumber}
+                        onChange={(e) => setReservationData({...reservationData, cardNumber: e.target.value})}
                         className="flex-grow bg-transparent border-none focus:outline-none text-xs text-gray-700"
                       />
                       <input 
                         type="text"
-                        placeholder="MM / YY  CVC"
-                        className="w-20 bg-transparent border-none focus:outline-none text-xs text-gray-700 text-right"
+                        value={`${reservationData.expiry}  ${reservationData.cvc}`}
+                        onChange={(e) => {
+                          const parts = e.target.value.split(/\s+/);
+                          if (parts.length >= 2) {
+                            setReservationData({
+                              ...reservationData, 
+                              expiry: parts[0], 
+                              cvc: parts[1]
+                            });
+                          }
+                        }}
+                        className="w-24 bg-transparent border-none focus:outline-none text-xs text-gray-700 text-right"
                       />
                     </div>
                   </div>
