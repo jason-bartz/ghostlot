@@ -1,7 +1,13 @@
 "use client";
 
 import React from 'react';
-import LandingDemoDashboard from "@/components/demo/LandingDemoDashboard";
+import dynamic from 'next/dynamic';
+
+// Use dynamic import with SSR disabled to avoid hydration issues
+const LandingDemoDashboard = dynamic(
+  () => import("@/components/demo/LandingDemoDashboard"),
+  { ssr: false }
+);
 import AnimatedGradientBackground from "@/components/ui/animated-gradient-background";
 
 export default function DemoPage() {
