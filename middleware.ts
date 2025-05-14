@@ -16,6 +16,12 @@ export function middleware(request: NextRequest) {
   // For local development
   const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
   
+  // Handle /demo path for both main domain and localhost
+  if ((isMainDomain || isLocalhost) && pathname === '/demo') {
+    console.log('Allowing Next.js to handle /demo route');
+    return NextResponse.next();
+  }
+  
   // If it's the main domain and root path, redirect to index.html
   if (isMainDomain && pathname === '/') {
     console.log('Rewriting to /index.html');
@@ -41,8 +47,9 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - public folder
+     * - assets folder
+     * - public files
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|assets|ghostlot.png|ghostlot-logo.png|ghostlot-favicon.svg|ezloan-logo.png|refractionmotors.png|website|demo-vehicle|saved-vehicles).*)',
   ],
 };
