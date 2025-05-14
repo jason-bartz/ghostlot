@@ -301,6 +301,7 @@ const tree = {
       },
         {
           'layout': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 64495)), "/Users/jasonbartz/GhostLot/src/app/layout.tsx"],
+'not-found': [() => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 18275)), "/Users/jasonbartz/GhostLot/src/app/not-found.tsx"],
           
         }
       ]
@@ -414,7 +415,7 @@ const __default__ = proxy.default;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [630,25,434,714,411,452], () => (__webpack_exec__(71710)));
+var __webpack_exports__ = __webpack_require__.X(0, [630,25,434,714,450,867], () => (__webpack_exec__(71710)));
 module.exports = __webpack_exports__;
 
 })();

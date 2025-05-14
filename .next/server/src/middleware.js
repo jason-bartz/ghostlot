@@ -9,7 +9,7 @@ module.exports = require("node:buffer");
 
 /***/ }),
 
-/***/ 105:
+/***/ 64:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18,7 +18,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fjasonbartz_2FGhostLot_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XQ_3D_3D_preferredRegion_middlewareConfig_eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XX0_3D_)
+  "default": () => (/* binding */ next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fjasonbartz_2FGhostLot_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XQ_3D_3D_preferredRegion_middlewareConfig_eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XX0_3D_)
 });
 
 // NAMESPACE OBJECT: ./src/middleware.ts
@@ -2014,6 +2014,23 @@ var dist = __webpack_require__(424);
 
 
 async function middleware(req) {
+    // Get the hostname
+    const hostname = req.headers.get("host") || "";
+    const pathname = req.nextUrl.pathname;
+    // Check if this is the main domain (ghostlot.com or www.ghostlot.com, but not app.ghostlot.com)
+    const isMainDomain = hostname.includes("ghostlot.com") && !hostname.includes("app.");
+    const isAppDomain = hostname.includes("app.ghostlot.com");
+    // Log for debugging
+    console.log(`Middleware hostname: ${hostname}, pathname: ${pathname}, isMainDomain: ${isMainDomain}, isAppDomain: ${isAppDomain}`);
+    // If this is the main domain and it's the root path, redirect to the landing page
+    if (isMainDomain && pathname === "/") {
+        console.log("Redirecting to landing page");
+        const url = new URL("/landing", req.url);
+        return NextResponse.rewrite(url);
+    }
+    // If this is the app domain, show the main page with purple background (default route)
+    // We don't need to do anything special here as the main route will handle it
+    // For all other cases, proceed with authentication checks
     const res = NextResponse.next();
     // Check for test user cookie - this will bypass all auth for demo purposes
     const testUserCookie = req.cookies.get("test_user_bypass");
@@ -2029,8 +2046,6 @@ async function middleware(req) {
         });
         // Refresh session if expired - required for Server Components
         await supabase.auth.getSession();
-        // Get the pathname
-        const pathname = req.nextUrl.pathname;
         // Skip middleware for static assets and API routes
         if (pathname.startsWith("/_next") || pathname.startsWith("/api") || pathname.includes(".") // Skip files with extensions (images, etc.)
         ) {
@@ -2069,12 +2084,12 @@ async function middleware(req) {
 }
 const config = {
     matcher: [
-        // Optional: Match all request paths except for these
-        "/((?!api|_next/static|_next/image|favicon.ico).*)"
+        // Match all request paths except for these
+        "/((?!api|_next/static|_next/image|favicon.ico|assets|static|public).*)"
     ]
 };
 
-;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=private-next-root-dir%2Fsrc%2Fmiddleware.ts&page=%2Fsrc%2Fmiddleware&rootDir=%2FUsers%2Fjasonbartz%2FGhostLot&matchers=W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10%2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XQ%3D%3D&preferredRegion=&middlewareConfig=eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10%2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XX0%3D!
+;// CONCATENATED MODULE: ./node_modules/next/dist/build/webpack/loaders/next-middleware-loader.js?absolutePagePath=private-next-root-dir%2Fsrc%2Fmiddleware.ts&page=%2Fsrc%2Fmiddleware&rootDir=%2FUsers%2Fjasonbartz%2FGhostLot&matchers=W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10%2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XQ%3D%3D&preferredRegion=&middlewareConfig=eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig%2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg%2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10%2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XX0%3D!
 
         
         
@@ -2087,7 +2102,7 @@ const config = {
           throw new Error('The Middleware "pages/src/middleware" must export a `middleware` or a `default` function');
         }
 
-        /* harmony default export */ function next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fjasonbartz_2FGhostLot_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XQ_3D_3D_preferredRegion_middlewareConfig_eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljbykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvKS4qKSJ9XX0_3D_(opts) {
+        /* harmony default export */ function next_middleware_loaderabsolutePagePath_private_next_root_dir_2Fsrc_2Fmiddleware_ts_page_2Fsrc_2Fmiddleware_rootDir_2FUsers_2Fjasonbartz_2FGhostLot_matchers_W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XQ_3D_3D_preferredRegion_middlewareConfig_eyJtYXRjaGVycyI6W3sicmVnZXhwIjoiXig_2FOlxcLyhfbmV4dFxcL2RhdGFcXC9bXi9dezEsfSkpPyg_2FOlxcLygoPyFhcGl8X25leHRcXC9zdGF0aWN8X25leHRcXC9pbWFnZXxmYXZpY29uLmljb3xhc3NldHN8c3RhdGljfHB1YmxpYykuKikpKC5qc29uKT9bXFwvI1xcP10_2FJCIsIm9yaWdpbmFsU291cmNlIjoiLygoPyFhcGl8X25leHQvc3RhdGljfF9uZXh0L2ltYWdlfGZhdmljb24uaWNvfGFzc2V0c3xzdGF0aWN8cHVibGljKS4qKSJ9XX0_3D_(opts) {
           return adapter({
             ...opts,
             page: "/src/middleware",
@@ -11909,7 +11924,7 @@ var export_serializeCookie = import_cookie.serialize;
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(105));
+/******/ var __webpack_exports__ = (__webpack_exec__(64));
 /******/ (_ENTRIES = typeof _ENTRIES === "undefined" ? {} : _ENTRIES)["middleware_src/middleware"] = __webpack_exports__;
 /******/ }
 ]);
