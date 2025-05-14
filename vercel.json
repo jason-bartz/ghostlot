@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "builds": [
     {
       "src": "package.json",
@@ -8,9 +9,16 @@
           "ignoreBuildErrors": true
         }
       }
+    },
+    {
+      "src": "public/**/*",
+      "use": "@vercel/static"
     }
   ],
-  "rewrites": [
-    { "source": "/", "destination": "/index.html" }
+  "routes": [
+    { "src": "^/$", "dest": "/index.html" },
+    { "src": "^/demo$", "dest": "/demo" },
+    { "src": "^/index.html$", "dest": "/index.html" },
+    { "src": "^/((?!api|_next/static|_next/image).+)$", "dest": "/$1" }
   ]
 }

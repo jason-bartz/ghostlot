@@ -1,58 +1,27 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  // Get the hostname (e.g. vercel.com, test.vercel.app, etc.)
-  const hostname = request.headers.get('host') || '';
-  const pathname = request.nextUrl.pathname;
+  const url = request.nextUrl.clone();
+  const { pathname } = url;
   
-  // Define conditions for the main domain and its subdomain
-  const isMainDomain = hostname.includes('ghostlot.com') && !hostname.includes('app.');
-  const isAppDomain = hostname.includes('app.ghostlot.com');
-  
-  console.log('Middleware hostname:', hostname, 'pathname:', pathname, 'isMainDomain:', isMainDomain, 'isAppDomain:', isAppDomain);
-  
-  // For local development
-  const isLocalhost = hostname.includes('localhost') || hostname.includes('127.0.0.1');
-  
-  // Handle /demo path for both main domain and localhost
-  if ((isMainDomain || isLocalhost) && pathname === '/demo') {
-    console.log('Allowing Next.js to handle /demo route');
-    return NextResponse.next();
+  // Log incoming request details
+  console.log(`Middleware processing: ${pathname}`);
+
+  // Handle root path specifically - direct to index.html
+  if (pathname === '/') {
+    console.log('Root path detected, rewriting to /index.html');
+    return NextResponse.rewrite(new URL('/index.html', request.url));
   }
-  
-  // If it's the main domain and root path, redirect to index.html
-  if (isMainDomain && pathname === '/') {
-    console.log('Rewriting to /index.html');
-    // Rewrite to /index.html - use a different syntax to ensure it works in production
-    const url = new URL('/index.html', request.url);
-    console.log('Rewriting to URL:', url.toString());
-    return NextResponse.rewrite(url);
-  }
-  
-  // For localhost, we want to allow Next.js to handle all routes
-  if (isLocalhost) {
-    console.log('Localhost detected, allowing Next.js to handle all routes');
-    return NextResponse.next();
-  }
-  
-  // Otherwise, continue with normal Next.js behavior
+
+  // Let all other requests continue normally
   return NextResponse.next();
 }
 
-// Run the middleware on the specified paths
+// Configure middleware to run only on specific paths
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - static assets and images
-     */
-    '/((?!_next/static|_next/image|_next/data|favicon.ico|assets|images|static|public|ghostlot.png|ghostlot-logo.png|ghostlot-favicon.svg|ezloan-logo.png|refractionmotors.png|website|demo-vehicle|saved-vehicles).*)',
-    // Explicitly include root path to ensure it's always processed by middleware
+    // Only process the root path with middleware
     '/'
   ],
 };
