@@ -1,20 +1,5 @@
 {
-  "/_not-found": "app/_not-found.js",
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/demo-gradient/page": "app/demo-gradient/page.js",
-  "/landing/page": "app/landing/page.js",
-  "/admin/test-data/page": "app/admin/test-data/page.js",
-  "/vehicle/[id]/page": "app/vehicle/[id]/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/consumer-view/page": "app/consumer-view/page.js",
-  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
-  "/(auth)/login/page": "app/(auth)/login/page.js",
-  "/(auth)/signup/page": "app/(auth)/signup/page.js",
-  "/dashboard/inventory/page": "app/dashboard/inventory/page.js",
-  "/dashboard/qr-codes/page": "app/dashboard/qr-codes/page.js",
-  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
-  "/dashboard/settings/page": "app/dashboard/settings/page.js",
-  "/dashboard/reservations/page": "app/dashboard/reservations/page.js",
-  "/dashboard/test-drives/page": "app/dashboard/test-drives/page.js",
-  "/dashboard/qr-codes/preview/[id]/page": "app/dashboard/qr-codes/preview/[id]/page.js"
+  "/consumer-view/page": "app/consumer-view/page.js"
 }
