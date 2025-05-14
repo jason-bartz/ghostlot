@@ -58,7 +58,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 w-full">
             <Link href="/dashboard" 
               className="bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9] text-white rounded-lg px-6 py-4 text-center font-semibold hover:shadow-[0_0_25px_rgba(139,92,246,0.5)] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_15px_rgba(139,92,246,0.4)] relative overflow-hidden group">
               <span className="relative z-10">Dealer Dashboard</span>
@@ -68,6 +68,16 @@ export default function Home() {
               className="bg-[#1E293B] text-[#F9FAFB] rounded-lg px-6 py-4 text-center font-semibold hover:bg-[#334155] transition-all duration-300 transform hover:-translate-y-1 border border-[#334155]">
               Consumer View
             </Link>
+            <button 
+              className="bg-gradient-to-r from-[#FBBF24] to-[#D97706] text-white rounded-lg px-6 py-4 text-center font-semibold hover:shadow-[0_0_25px_rgba(251,191,36,0.5)] transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_15px_rgba(251,191,36,0.4)] relative overflow-hidden group"
+              data-tally-open="n9a8vp" 
+              data-tally-width="500" 
+              data-tally-overlay="1" 
+              data-tally-emoji-text="👻" 
+              data-tally-emoji-animation="heart-beat">
+              <span className="relative z-10">Join the Waitlist</span>
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-20 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></span>
+            </button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 w-full">
