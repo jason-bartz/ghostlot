@@ -17,14 +17,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     title: 'GhostLot™ - Your Lot. Alive After Hours.',
-    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you're closed.',
+    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
     images: ['/opengraph.webp'],
     siteName: 'GhostLot™',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'GhostLot™ - Your Lot. Alive After Hours.',
-    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you're closed.',
+    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
     images: ['/opengraph.webp'],
   },
 };
