@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GhostLot™ - Don't Ghost Your Leads</title>
-    <meta name="description" content="GhostLot™ connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features - even when the dealership is closed.">
+    <meta name="description" content="GhostLot connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features - even when the dealership is closed.">
     <meta name="keywords" content="car dealership software, automotive digital retailing, QR code inventory, dealership tech, after hours car shopping">
     
     <!-- Favicon -->
-    <link rel="icon" href="/ghostlot-favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/ghostlot.png" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
     <!-- Canonical URL -->
@@ -40,16 +40,13 @@
     
     <!-- Scripts -->
     <script async src="https://tally.so/widgets/embed.js"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/framer-motion@10.12.16/dist/framer-motion.js"></script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "GhostLot™",
+      "name": "GhostLot",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "offers": {
@@ -58,7 +55,7 @@
         "priceCurrency": "USD",
         "availability": "https://schema.org/ComingSoon"
       },
-      "description": "GhostLot™ connects shoppers to dealer inventory—whether they're on the lot or at home. It turns every vehicle into an interactive, hyper-mobile experience that works 24/7."
+      "description": "GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It turns every vehicle into an interactive, hyper-mobile experience that works 24/7."
     }
     </script>
     <style>
@@ -814,8 +811,8 @@
         <div class="container">
             <div class="header-inner">
                 <div class="logo">
-                    <img src="/ghostlot-favicon.svg" alt="GhostLot Logo - 24/7 Automotive Digital Retail Solution">
-                    <div class="logo-text">GhostLot™</div>
+                    <img src="/ghostlot.png" alt="GhostLot Logo - 24/7 Automotive Digital Retail Solution">
+                    <div class="logo-text">GhostLot</div>
                 </div>
                 <nav aria-label="Main Navigation">
                     <div class="nav-links">
@@ -824,7 +821,7 @@
                         <a href="#benefits" aria-label="See dealer benefits">Benefits</a>
                     </div>
                 </nav>
-                <button class="cta-button" data-tally-open="n9a8vp" data-tally-width="500" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="heart-beat" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+                <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
             </div>
         </div>
     </header>
@@ -834,9 +831,9 @@
         <div class="container">
             <div class="hero-content">
                 <span class="hero-stars" aria-hidden="true">✨</span>
-                <h1>Your lot. Alive after hours.</h1>
-                <p>GhostLot™ connects shoppers to dealer inventory—whether they're on the lot or at home. It's designed to turn every vehicle into an interactive, hyper-mobile experience that works 24/7. Shoppers can view real-time pricing, schedule test drives, estimate payments, and reserve vehicles—all without needing to talk to a salesperson.</p>
-                <button class="cta-button" data-tally-open="n9a8vp" data-tally-width="500" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="heart-beat" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+                <h1>Don't Ghost Your Leads.</h1>
+                <p>GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It's designed to turn every vehicle into an interactive, hyper-mobile experience that works 24/7. Shoppers can view real-time pricing, schedule test drives, estimate payments, and reserve vehicles—all without needing to talk to a salesperson.</p>
+                <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
             </div>
             <img src="/website/desktop-image.png" alt="GhostLot mobile application interface showing vehicle details and pricing" class="hero-image" loading="eager" width="600" height="400" />
         </div>
@@ -846,10 +843,39 @@
         <div class="container">
             <div class="section-header">
                 <h2>Powerful Features Built for Dealers</h2>
-                <p>GhostLot™ turns your entire inventory into a self-service dealership, maximizing engagement and conversions even when you're closed.</p>
+                <p>GhostLot turns your entire inventory into a self-service dealership, maximizing engagement and conversions even when you're closed.</p>
             </div>
-            <div class="features" id="gradient-cards-container">
-                <!-- Gradient Cards will be rendered here by React -->
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔍</div>
+                    <h3>Interactive QR Codes</h3>
+                    <p>Generate custom QR codes for each vehicle in your inventory. Place them on windshields, brochures, or print ads to create instant digital connections to your inventory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📱</div>
+                    <h3>Mobile-First Experience</h3>
+                    <p>Deliver a seamless mobile experience that works on any device. No app downloads required – customers simply scan and start browsing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h3>Real-Time Analytics</h3>
+                    <p>Track scans, test drive requests, saved vehicles, and more. Gain insights into which vehicles are getting the most attention and optimize your inventory accordingly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🗓️</div>
+                    <h3>Automated Scheduling</h3>
+                    <p>Allow customers to book test drives directly from their phones. Manage all appointments from a single dashboard and never miss a potential sale.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">💰</div>
+                    <h3>Digital Reservations</h3>
+                    <p>Accept deposits and secure vehicle reservations online. Customers can hold their dream car with just a few taps, even outside business hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔗</div>
+                    <h3>DMS Integration</h3>
+                    <p>Seamlessly connect with your dealer management system for real-time inventory updates. No manual data entry required.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -889,7 +915,7 @@
         <div class="container">
             <div class="benefits">
                 <div class="benefits-content">
-                    <h2>Why Dealers Choose GhostLot™</h2>
+                    <h2>Why Dealers Choose GhostLot</h2>
                     <ul class="benefits-list">
                         <li>
                             <div class="check-icon" aria-hidden="true">✓</div>
@@ -928,7 +954,22 @@
                         </li>
                     </ul>
                 </div>
-                <img src="/website/mobile-image-2.png" alt="GhostLot mobile application showing vehicle details, pricing and scheduling interface" class="benefits-image" loading="lazy" width="500" height="680" />
+                <img src="/website/mobile-image.png" alt="GhostLot mobile application showing vehicle details, pricing and scheduling interface" class="benefits-image" loading="lazy" width="500" height="680" />
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="demo" aria-label="GhostLot Dealership Demo" style="background: radial-gradient(circle at center, var(--gray-dark), var(--darker));">
+        <div class="container">
+            <div class="section-header">
+                <h2>See the Dealership Dashboard in Action</h2>
+                <p>Watch how easily dealers can manage inventory, generate QR codes, track leads, and measure engagement with GhostLot's intuitive dashboard.</p>
+            </div>
+            <div class="dashboard-demo-container" style="text-align: center; max-width: 100%; margin: 0 auto; position: relative;">
+                <img src="/public/website/website-demo.gif" alt="GhostLot Dashboard Demo showing vehicle reservations and customer management interface" style="max-width: 100%; height: auto; border-radius: 0.75rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid var(--gray-light);" loading="lazy" width="900" height="507" />
+                <div class="demo-caption" style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 2rem 1rem 1rem; border-radius: 0 0 0.75rem 0.75rem;">
+                    <p style="margin: 0; color: white; font-weight: 500;">Powerful tools to connect with customers 24/7</p>
+                </div>
             </div>
         </div>
     </section>
@@ -939,7 +980,7 @@
                 <h2>Ready to transform your dealership?</h2>
                 <p>Join the waitlist today to be among the first dealers to access GhostLot. Limited spots available for our early access program.</p>
                 <div class="cta-buttons">
-                    <button class="cta-primary" data-tally-open="n9a8vp" data-tally-width="500" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="heart-beat" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
+                    <button class="cta-primary" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
                 </div>
             </div>
         </div>
@@ -950,19 +991,37 @@
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                        <img src="/ghostlot-favicon.svg" alt="GhostLot Logo" width="40" height="40">
-                        <div class="footer-logo-text">GhostLot™</div>
+                        <img src="/ghostlot.png" alt="GhostLot Logo" width="40" height="40">
+                        <div class="footer-logo-text">GhostLot</div>
                     </div>
                     <p class="footer-description">
                         Your lot. Alive after hours.
                         <br />
-                        GhostLot™ connects shoppers to dealer inventory with a seamless mobile experience that works 24/7.
+                        GhostLot connects shoppers to dealer inventory with a seamless mobile experience that works 24/7.
                     </p>
-                    <!-- Social links removed as requested -->
+                    <div class="social-links">
+                        <a href="https://twitter.com/GhostLotApp" class="social-link" aria-label="Follow GhostLot on Twitter" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22 5.80C21.2483 6.12833 20.4534 6.34167 19.64 6.43C20.4982 5.92167 21.1413 5.12167 21.447 4.17C20.6421 4.65 19.761 4.98833 18.842 5.17C18.0989 4.37167 17.0266 3.875 15.8462 3.875C13.5798 3.875 11.7443 5.71 11.7443 7.97667C11.7443 8.30167 11.7799 8.61833 11.8548 8.92C8.43822 8.745 5.41699 7.11 3.39163 4.62167C3.03576 5.23833 2.83604 5.92167 2.83604 6.65333C2.83604 8.03333 3.56149 9.25833 4.66162 9.975C3.98979 9.95333 3.35673 9.77833 2.80343 9.485C2.80343 9.50167 2.80343 9.52 2.80343 9.53833C2.80343 11.5333 4.22201 13.2017 6.08539 13.5783C5.73996 13.6717 5.37269 13.7217 4.99377 13.7217C4.73428 13.7217 4.47913 13.6967 4.23239 13.65C4.74878 15.29 6.27585 16.48 8.07405 16.5167C6.67004 17.6133 4.90154 18.2633 2.97963 18.2633C2.6472 18.2633 2.32341 18.2433 2 18.205C3.81608 19.3667 5.97233 20.0417 8.28941 20.0417C15.8356 20.0417 19.9644 13.7917 19.9644 8.32833C19.9644 8.14833 19.9608 7.97 19.9501 7.79333C20.7643 7.205 21.4505 6.46167 22 5.80Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com/GhostLotApp" class="social-link" aria-label="Follow GhostLot on Instagram" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12 2.16094C15.2063 2.16094 15.5859 2.175 16.8469 2.23125C18.0188 2.28281 18.6516 2.47969 19.0734 2.64375C19.6313 2.85938 20.0344 3.12188 20.4516 3.53906C20.8734 3.96094 21.1313 4.35938 21.3469 4.91719C21.5109 5.33906 21.7078 5.97656 21.7594 7.14375C21.8156 8.40937 21.8297 8.78906 21.8297 12C21.8297 15.2109 21.8156 15.5906 21.7594 16.8516C21.7078 18.0234 21.5109 18.6563 21.3469 19.0781C21.1313 19.6359 20.8688 20.0391 20.4516 20.4563C20.0297 20.8781 19.6313 21.1359 19.0734 21.3516C18.6516 21.5156 18.0141 21.7125 16.8469 21.7641C15.5813 21.8203 15.2016 21.8344 12 21.8344C8.79375 21.8344 8.41406 21.8203 7.15313 21.7641C5.98125 21.7125 5.34844 21.5156 4.92656 21.3516C4.36875 21.1359 3.96563 20.8734 3.54844 20.4563C3.12656 20.0344 2.86875 19.6359 2.65313 19.0781C2.48906 18.6563 2.29219 18.0188 2.24063 16.8516C2.18438 15.5859 2.17031 15.2063 2.17031 12C2.17031 8.78906 2.18438 8.40937 2.24063 7.14844C2.29219 5.97656 2.48906 5.34375 2.65313 4.92188C2.86875 4.36406 3.13125 3.96094 3.54844 3.54375C3.97031 3.12188 4.36875 2.86406 4.92656 2.64844C5.34844 2.48438 5.98594 2.2875 7.15313 2.23594C8.41406 2.175 8.79375 2.16094 12 2.16094ZM12 0C8.74219 0 8.33438 0.0140625 7.05469 0.0703125C5.77969 0.126563 4.90313 0.332812 4.14375 0.628125C3.35156 0.9375 2.68125 1.34531 2.01563 2.01562C1.34531 2.68125 0.9375 3.35156 0.628125 4.13906C0.332812 4.90312 0.126563 5.775 0.0703125 7.05C0.0140625 8.33437 0 8.74219 0 12C0 15.2578 0.0140625 15.6656 0.0703125 16.9453C0.126563 18.2203 0.332812 19.0969 0.628125 19.8563C0.9375 20.6484 1.34531 21.3188 2.01563 21.9844C2.68125 22.65 3.35156 23.0625 4.13906 23.3672C4.90313 23.6625 5.775 23.8687 7.05 23.925C8.32969 23.9812 8.7375 23.9953 11.9953 23.9953C15.2531 23.9953 15.6609 23.9812 16.9406 23.925C18.2156 23.8687 19.0922 23.6625 19.8516 23.3672C20.6391 23.0625 21.3094 22.65 21.975 21.9844C22.6406 21.3188 23.0531 20.6484 23.3578 19.8609C23.6531 19.0969 23.8594 18.225 23.9156 16.95C23.9719 15.6703 23.9859 15.2625 23.9859 12.0047C23.9859 9.74687 23.9719 9.33906 23.9156 8.05937C23.8594 6.78437 23.6531 5.90781 23.3578 5.14844C23.0625 4.35156 22.6547 3.68125 21.9844 3.01562C21.3188 2.35 20.6484 1.9375 19.8609 1.63281C19.0969 1.3375 18.225 1.13125 16.95 1.075C15.6656 0.0140625 15.2578 0 12 0Z" fill="currentColor"/>
+                                <path d="M12 5.83594C8.59688 5.83594 5.83594 8.59688 5.83594 12C5.83594 15.4031 8.59688 18.1641 12 18.1641C15.4031 18.1641 18.1641 15.4031 18.1641 12C18.1641 8.59688 15.4031 5.83594 12 5.83594ZM12 16.0031C9.79219 16.0031 7.99688 14.2078 7.99688 12C7.99688 9.79219 9.79219 7.99688 12 7.99688C14.2078 7.99688 16.0031 9.79219 16.0031 12C16.0031 14.2078 14.2078 16.0031 12 16.0031Z" fill="currentColor"/>
+                                <path d="M19.8469 5.59214C19.8469 6.38902 19.2 7.0312 18.4078 7.0312C17.6109 7.0312 16.9688 6.38433 16.9688 5.59214C16.9688 4.79526 17.6156 4.15308 18.4078 4.15308C19.2 4.15308 19.8469 4.79995 19.8469 5.59214Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/company/ghostlot" class="social-link" aria-label="Connect with GhostLot on LinkedIn" rel="noopener">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22.4412 0H1.55882C0.697059 0 0 0.697059 0 1.55882V22.4412C0 23.3029 0.697059 24 1.55882 24H22.4412C23.3029 24 24 23.3029 24 22.4412V1.55882C24 0.697059 23.3029 0 22.4412 0ZM7.15059 20.4706H3.67059V9.04235H7.15059V20.4706ZM5.41059 7.49647C4.26353 7.49647 3.33176 6.56471 3.33176 5.42118C3.33176 4.27765 4.26353 3.34588 5.41059 3.34588C6.55412 3.34588 7.48588 4.27765 7.48588 5.42118C7.48588 6.56471 6.55412 7.49647 5.41059 7.49647ZM20.4706 20.4706H16.9906V14.9647C16.9906 13.6447 16.97 11.9153 15.1329 11.9153C13.2753 11.9153 12.9847 13.3976 12.9847 14.9224V20.4706H9.50471V9.04235H12.8447V10.5871H12.8853C13.3765 9.69176 14.5447 8.74588 16.2741 8.74588C19.7953 8.74588 20.4706 11.0659 20.4706 14.0735V20.4706Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
-                © 2025 GhostLot™ by Refraction. All rights reserved.
+                © 2025 GhostLot by Refraction. All rights reserved.
             </div>
         </div>
     </footer>
@@ -996,458 +1055,42 @@
             }
         });
         
-        // Feature Data
-        const featureData = [
-            {
-                icon: "🔍",
-                title: "Interactive QR Codes",
-                description: "Generate custom QR codes for each vehicle in your inventory. Place them on windshields, brochures, or print ads to create instant digital connections."
-            },
-            {
-                icon: "📱",
-                title: "Mobile-First Experience",
-                description: "Deliver a seamless mobile experience that works on any device. No app downloads required – customers simply scan and start browsing."
-            },
-            {
-                icon: "📊",
-                title: "Real-Time Analytics",
-                description: "Track scans, test drive requests, saved vehicles, and more. Gain insights into which vehicles are getting the most attention."
-            },
-            {
-                icon: "🗓️",
-                title: "Automated Scheduling",
-                description: "Allow customers to book test drives directly from their phones. Manage all appointments from a single dashboard."
-            },
-            {
-                icon: "💰",
-                title: "Digital Reservations",
-                description: "Accept deposits and secure vehicle reservations online. Customers can hold their dream car with just a few taps."
-            },
-            {
-                icon: "🔗",
-                title: "DMS Integration",
-                description: "Seamlessly connect with your dealer management system for real-time inventory updates. No manual data entry required."
-            }
-        ];
-        
-        // Wait for DOM content and React libraries to load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create and render GradientCard component
-            const { useState, useRef, useEffect } = React;
-            const { motion } = window.framerMotion;
+        // Simple particles effect
+        function createParticles() {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles';
+            document.body.appendChild(particlesContainer);
             
-            // GradientCard Component
-            const GradientCard = ({ icon, title, description }) => {
-                const cardRef = useRef(null);
-                const [isHovered, setIsHovered] = useState(false);
-                const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-                const [rotation, setRotation] = useState({ x: 0, y: 0 });
+            const numberOfParticles = 30;
             
-                // Handle mouse movement for 3D effect
-                const handleMouseMove = (e) => {
-                    if (cardRef.current) {
-                        const rect = cardRef.current.getBoundingClientRect();
-            
-                        // Calculate mouse position relative to card center
-                        const x = e.clientX - rect.left - rect.width / 2;
-                        const y = e.clientY - rect.top - rect.height / 2;
-            
-                        setMousePosition({ x, y });
-            
-                        // Calculate rotation (limited range for subtle effect)
-                        const rotateX = -(y / rect.height) * 5; // Max 5 degrees rotation
-                        const rotateY = (x / rect.width) * 5; // Max 5 degrees rotation
-            
-                        setRotation({ x: rotateX, y: rotateY });
-                    }
-                };
-            
-                // Reset rotation when not hovering
-                const handleMouseLeave = () => {
-                    setIsHovered(false);
-                    setRotation({ x: 0, y: 0 });
-                };
-            
-                return (
-                    <motion.div
-                        ref={cardRef}
-                        className="relative rounded-[32px] overflow-hidden"
-                        style={{
-                            width: "100%",
-                            height: "380px",
-                            transformStyle: "preserve-3d",
-                            backgroundColor: "#0e131f",
-                            boxShadow: "0 -10px 100px 10px rgba(78, 99, 255, 0.25), 0 0 10px 0 rgba(0, 0, 0, 0.5)",
-                        }}
-                        initial={{ y: 0 }}
-                        animate={{
-                            y: isHovered ? -5 : 0,
-                            rotateX: rotation.x,
-                            rotateY: rotation.y,
-                            perspective: 1000,
-                        }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 300,
-                            damping: 20
-                        }}
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseMove={handleMouseMove}
-                    >
-                        {/* Subtle glass reflection overlay */}
-                        <motion.div
-                            className="absolute inset-0 z-35 pointer-events-none"
-                            style={{
-                                background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 80%, rgba(255,255,255,0.05) 100%)",
-                                backdropFilter: "blur(2px)",
-                            }}
-                            animate={{
-                                opacity: isHovered ? 0.7 : 0.5,
-                                rotateX: -rotation.x * 0.2,
-                                rotateY: -rotation.y * 0.2,
-                                z: 1,
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-            
-                        {/* Dark background with black gradient like in the image */}
-                        <motion.div
-                            className="absolute inset-0 z-0"
-                            style={{
-                                background: "linear-gradient(180deg, #000000 0%, #000000 70%)",
-                            }}
-                            animate={{
-                                z: -1
-                            }}
-                        />
-            
-                        {/* Noise texture overlay */}
-                        <motion.div
-                            className="absolute inset-0 opacity-30 mix-blend-overlay z-10"
-                            style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                            }}
-                            animate={{
-                                z: -0.5
-                            }}
-                        />
-            
-                        {/* Subtle finger smudge texture for realism */}
-                        <motion.div
-                            className="absolute inset-0 opacity-10 mix-blend-soft-light z-11 pointer-events-none"
-                            style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='smudge'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.01' numOctaves='3' seed='5' stitchTiles='stitch'/%3E%3CfeGaussianBlur stdDeviation='10'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23smudge)'/%3E%3C/svg%3E")`,
-                                backdropFilter: "blur(1px)",
-                            }}
-                            animate={{
-                                z: -0.25
-                            }}
-                        />
-            
-                        {/* Purple/blue glow effect matching the image */}
-                        <motion.div
-                            className="absolute bottom-0 left-0 right-0 h-2/3 z-20"
-                            style={{
-                                background: `
-                                    radial-gradient(ellipse at bottom right, rgba(172, 92, 255, 0.7) -10%, rgba(79, 70, 229, 0) 70%),
-                                    radial-gradient(ellipse at bottom left, rgba(56, 189, 248, 0.7) -10%, rgba(79, 70, 229, 0) 70%)
-                                `,
-                                filter: "blur(40px)",
-                            }}
-                            animate={{
-                                opacity: isHovered ? 0.9 : 0.8,
-                                y: isHovered ? rotation.x * 0.5 : 0,
-                                z: 0
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-            
-                        {/* Central purple glow as seen in the image */}
-                        <motion.div
-                            className="absolute bottom-0 left-0 right-0 h-2/3 z-21"
-                            style={{
-                                background: `
-                                    radial-gradient(circle at bottom center, rgba(161, 58, 229, 0.7) -20%, rgba(79, 70, 229, 0) 60%)
-                                `,
-                                filter: "blur(45px)",
-                            }}
-                            animate={{
-                                opacity: isHovered ? 0.85 : 0.75,
-                                y: isHovered ? `calc(10% + ${rotation.x * 0.3}px)` : "10%",
-                                z: 0
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-            
-                        {/* Enhanced bottom border glow for premium look */}
-                        <motion.div
-                            className="absolute bottom-0 left-0 right-0 h-[2px] z-25"
-                            style={{
-                                background: "linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0.05) 100%)",
-                            }}
-                            animate={{
-                                boxShadow: isHovered
-                                    ? "0 0 20px 4px rgba(172, 92, 255, 0.9), 0 0 30px 6px rgba(138, 58, 185, 0.7), 0 0 40px 8px rgba(56, 189, 248, 0.5)"
-                                    : "0 0 15px 3px rgba(172, 92, 255, 0.8), 0 0 25px 5px rgba(138, 58, 185, 0.6), 0 0 35px 7px rgba(56, 189, 248, 0.4)",
-                                opacity: isHovered ? 1 : 0.9,
-                                z: 0.5
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-                        <motion.div
-                            className="absolute bottom-0 left-0 h-1/4 w-[1px] z-25 rounded-full"
-                            style={{
-                                background: "linear-gradient(to top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.1) 60%, rgba(255, 255, 255, 0) 80%)",
-                            }}
-                            animate={{
-                                boxShadow: isHovered
-                                    ? "0 0 20px 4px rgba(172, 92, 255, 0.9), 0 0 30px 6px rgba(138, 58, 185, 0.7), 0 0 40px 8px rgba(56, 189, 248, 0.5)"
-                                    : "0 0 15px 3px rgba(172, 92, 255, 0.8), 0 0 25px 5px rgba(138, 58, 185, 0.6), 0 0 35px 7px rgba(56, 189, 248, 0.4)",
-                                opacity: isHovered ? 1 : 0.9,
-                                z: 0.5
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-                        <motion.div
-                            className="absolute bottom-0 right-0 h-1/4 w-[1px] z-25 rounded-full"
-                            style={{
-                                background: "linear-gradient(to top, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.1) 60%, rgba(255, 255, 255, 0) 80%)",
-                            }}
-                            animate={{
-                                boxShadow: isHovered
-                                    ? "0 0 20px 4px rgba(172, 92, 255, 0.9), 0 0 30px 6px rgba(138, 58, 185, 0.7), 0 0 40px 8px rgba(56, 189, 248, 0.5)"
-                                    : "0 0 15px 3px rgba(172, 92, 255, 0.8), 0 0 25px 5px rgba(138, 58, 185, 0.6), 0 0 35px 7px rgba(56, 189, 248, 0.4)",
-                                opacity: isHovered ? 1 : 0.9,
-                                z: 0.5
-                            }}
-                            transition={{
-                                duration: 0.4,
-                                ease: "easeOut"
-                            }}
-                        />
-            
-                        {/* Card content */}
-                        <motion.div
-                            className="relative flex flex-col h-full p-8 z-40"
-                            animate={{
-                                z: 2
-                            }}
-                        >
-                            {/* Icon circle with shadow */}
-                            <motion.div
-                                className="w-12 h-12 rounded-full flex items-center justify-center mb-6"
-                                style={{
-                                    background: "linear-gradient(225deg, #171c2c 0%, #121624 100%)",
-                                    position: "relative",
-                                    overflow: "hidden"
-                                }}
-                                initial={{ filter: "blur(3px)", opacity: 0.7 }}
-                                animate={{
-                                    filter: "blur(0px)",
-                                    opacity: 1,
-                                    boxShadow: isHovered
-                                        ? "0 8px 16px -2px rgba(0, 0, 0, 0.3), 0 4px 8px -1px rgba(0, 0, 0, 0.2), inset 2px 2px 5px rgba(255, 255, 255, 0.15), inset -2px -2px 5px rgba(0, 0, 0, 0.7)"
-                                        : "0 6px 12px -2px rgba(0, 0, 0, 0.25), 0 3px 6px -1px rgba(0, 0, 0, 0.15), inset 1px 1px 3px rgba(255, 255, 255, 0.12), inset -2px -2px 4px rgba(0, 0, 0, 0.5)",
-                                    z: isHovered ? 10 : 5,
-                                    y: isHovered ? -2 : 0,
-                                    rotateX: isHovered ? -rotation.x * 0.5 : 0,
-                                    rotateY: isHovered ? -rotation.y * 0.5 : 0
-                                }}
-                                transition={{
-                                    duration: 0.4,
-                                    ease: "easeOut"
-                                }}
-                            >
-                                {/* Top-left highlight for realistic lighting */}
-                                <div
-                                    className="absolute top-0 left-0 w-2/3 h-2/3 opacity-40"
-                                    style={{
-                                        background: "radial-gradient(circle at top left, rgba(255, 255, 255, 0.5), transparent 80%)",
-                                        pointerEvents: "none",
-                                        filter: "blur(10px)"
-                                    }}
-                                />
-            
-                                {/* Bottom shadow for depth */}
-                                <div
-                                    className="absolute bottom-0 left-0 w-full h-1/2 opacity-50"
-                                    style={{
-                                        background: "linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent)",
-                                        pointerEvents: "none",
-                                        backdropFilter: "blur(3px)"
-                                    }}
-                                />
-            
-                                {/* Feature icon */}
-                                <div className="flex items-center justify-center w-full h-full relative z-10">
-                                    <span style={{ fontSize: "20px" }}>{icon}</span>
-                                </div>
-                            </motion.div>
-            
-                            {/* Content positioning to match the image */}
-                            <motion.div
-                                className="mb-auto"
-                                animate={{
-                                    z: isHovered ? 5 : 2,
-                                    rotateX: isHovered ? -rotation.x * 0.3 : 0,
-                                    rotateY: isHovered ? -rotation.y * 0.3 : 0
-                                }}
-                                transition={{
-                                    duration: 0.4,
-                                    ease: "easeOut"
-                                }}
-                            >
-                                <motion.h3
-                                    className="text-2xl font-medium text-white mb-3"
-                                    style={{
-                                        letterSpacing: "-0.01em",
-                                        lineHeight: 1.2,
-                                    }}
-                                    initial={{ filter: "blur(3px)", opacity: 0.7 }}
-                                    animate={{
-                                        textShadow: isHovered ? "0 2px 4px rgba(0,0,0,0.2)" : "none",
-                                        filter: "blur(0px)",
-                                        opacity: 1,
-                                        transition: { duration: 1.2, delay: 0.2 }
-                                    }}
-                                >
-                                    {title}
-                                </motion.h3>
-            
-                                <motion.p
-                                    className="text-sm mb-6 text-gray-300"
-                                    style={{
-                                        lineHeight: 1.5,
-                                        fontWeight: 350,
-                                    }}
-                                    initial={{ filter: "blur(3px)", opacity: 0.7 }}
-                                    animate={{
-                                        textShadow: isHovered ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
-                                        filter: "blur(0px)",
-                                        opacity: 0.85,
-                                        transition: { duration: 1.2, delay: 0.4 }
-                                    }}
-                                >
-                                    {description}
-                                </motion.p>
-            
-                                {/* Learn More with arrow */}
-                                <motion.a
-                                    href="#"
-                                    className="inline-flex items-center text-white text-sm font-medium group"
-                                    initial={{ filter: "blur(3px)", opacity: 0.7 }}
-                                    animate={{
-                                        filter: "blur(0px)",
-                                        opacity: 0.9,
-                                        transition: { duration: 1.2, delay: 0.6 }
-                                    }}
-                                    whileHover={{
-                                        filter: "drop-shadow(0 0 5px rgba(255, 255, 255, 0.5))"
-                                    }}
-                                >
-                                    Learn More
-                                    <motion.svg
-                                        className="ml-1 w-4 h-4"
-                                        width="16"
-                                        height="16"
-                                        viewBox="0 0 16 16"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        animate={{
-                                            x: isHovered ? 4 : 0
-                                        }}
-                                        transition={{
-                                            duration: 0.6,
-                                            ease: "easeOut"
-                                        }}
-                                    >
-                                        <path
-                                            d="M1 8H15M15 8L8 1M15 8L8 15"
-                                            stroke="white"
-                                            strokeWidth="1.5"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </motion.svg>
-                                </motion.a>
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
-                );
-            };
-
-            // Render the feature cards
-            setTimeout(() => {
-                const container = document.getElementById('gradient-cards-container');
-                if (container && window.ReactDOM) {
-                    ReactDOM.render(
-                        React.createElement(
-                            'div', 
-                            { 
-                                style: {
-                                    display: 'grid',
-                                    gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-                                    gap: '2rem'
-                                }
-                            },
-                            featureData.map((feature, index) => 
-                                React.createElement(GradientCard, {
-                                    key: index,
-                                    icon: feature.icon,
-                                    title: feature.title,
-                                    description: feature.description
-                                })
-                            )
-                        ),
-                        container
-                    );
-                }
-            }, 500); // Small delay to ensure libraries are fully loaded
-        });
-        
-        // Implement the SparklesCore component
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create a script element for the SparklesCore component
-            const sparklesScript = document.createElement('script');
-            sparklesScript.type = 'module';
-            sparklesScript.textContent = `
-                import React from 'react';
-                import ReactDOM from 'react-dom';
-                import { SparklesCore } from './components/SparklesCore';
+            for (let i = 0; i < numberOfParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
                 
-                // Render the SparklesCore component
-                ReactDOM.render(
-                    React.createElement(SparklesCore, {
-                        background: "transparent",
-                        minSize: 0.4,
-                        maxSize: 1.5,
-                        particleColor: "#FFFFFF",
-                        particleDensity: 70,
-                        speed: 1,
-                        className: "w-full h-full"
-                    }),
-                    document.getElementById('sparkles-effect')
-                );
-            `;
-            
-            document.body.appendChild(sparklesScript);
-        });
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random horizontal position
+                const xPos = Math.random() * 100;
+                particle.style.left = `${xPos}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay so they don't all start at the same time
+                const delay = Math.random() * 10;
+                particle.style.animationDelay = `${delay}s`;
+                
+                // Add particle to the container
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles when the page loads
+        window.addEventListener('DOMContentLoaded', createParticles);
     </script>
 </body>
 </html>

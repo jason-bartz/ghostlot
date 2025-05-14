@@ -105,72 +105,101 @@ class DataImportService {
       
       // Step 1: Create dealer profiles
       this._updateStatus('Creating dealer profiles...', 'info');
-      this._updateProgress(10);
-      
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate database operation
+      const dealers = SampleDataGenerator.generateBatch.dealers(config.dealerCount);
+      this._updateProgress(10);
       
       // Step 2: Generate sample vehicles
       this._updateStatus('Generating sample vehicles...', 'info');
-      this._updateProgress(30);
-      
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate database operation
+      const vehicles = SampleDataGenerator.generateBatch.vehicles(config.vehicleCount);
+      this._updateProgress(30);
       
       // Step 3: Create QR codes for vehicles
       this._updateStatus('Creating QR codes for vehicles...', 'info');
-      this._updateProgress(50);
-      
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate database operation
+      const qrCodes = vehicles.map(vehicle => {
+        const dealer = SampleDataGenerator.utils.getRandomElement(dealers);
+        return SampleDataGenerator.qrCode(vehicle, dealer);
+      });
+      this._updateProgress(50);
       
       // Step 4: Generate test drive requests
       this._updateStatus('Generating test drive requests...', 'info');
-      this._updateProgress(65);
-      
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate database operation
+      
+      const consumers = SampleDataGenerator.generateBatch.consumers(config.consumerCount);
+      const testDrives = [];
+      
+      for (let i = 0; i < config.testDriveCount; i++) {
+        const vehicle = SampleDataGenerator.utils.getRandomElement(vehicles);
+        const consumer = SampleDataGenerator.utils.getRandomElement(consumers);
+        testDrives.push(SampleDataGenerator.testDrive(vehicle, consumer));
+      }
+      this._updateProgress(65);
       
       // Step 5: Create sample reservations
       this._updateStatus('Creating sample reservations...', 'info');
-      this._updateProgress(80);
-      
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate database operation
+      
+      const reservations = [];
+      for (let i = 0; i < config.reservationCount; i++) {
+        let vehicle;
+        // Try to find a vehicle that doesn't already have a reservation
+        const reservedVehicleIds = reservations.map(r => r.vehicleId);
+        const availableVehicles = vehicles.filter(v => !reservedVehicleIds.includes(v.id));
+        
+        if (availableVehicles.length > 0) {
+          vehicle = SampleDataGenerator.utils.getRandomElement(availableVehicles);
+        } else {
+          vehicle = SampleDataGenerator.utils.getRandomElement(vehicles);
+        }
+        
+        const consumer = SampleDataGenerator.utils.getRandomElement(consumers);
+        reservations.push(SampleDataGenerator.reservation(vehicle, consumer));
+      }
+      this._updateProgress(80);
       
       // Step 6: Generate analytics data
       this._updateStatus('Generating analytics data...', 'info');
+      if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate database operation
+      
+      const analyticsTypes = ['qr_scan', 'page_view', 'button_click', 'form_submission'];
+      const analyticsEntries = [];
+      
+      for (let i = 0; i < config.analyticsEntryCount; i++) {
+        const qrCode = SampleDataGenerator.utils.getRandomElement(qrCodes);
+        const type = SampleDataGenerator.utils.getRandomElement(analyticsTypes);
+        analyticsEntries.push(SampleDataGenerator.analyticsEntry(qrCode, type));
+      }
       this._updateProgress(95);
       
-      // Simulate database operation
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      // Step 7: Finalize and return results
+      this._updateStatus('Finalizing test data...', 'info');
       if (this._shouldCancel()) return { success: false, cancelled: true };
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate database operation
       
-      // Complete
       this._updateProgress(100);
       this._updateStatus('Test data generation completed successfully!', 'success');
       
       return {
         success: true,
         counts: {
-          dealers: config.dealerCount,
-          vehicles: config.vehicleCount,
-          qrCodes: config.vehicleCount,
-          testDrives: config.testDriveCount,
-          reservations: config.reservationCount,
-          analytics: config.analyticsEntryCount
-        }
+          dealers: dealers.length,
+          vehicles: vehicles.length,
+          qrCodes: qrCodes.length,
+          testDrives: testDrives.length,
+          reservations: reservations.length,
+          analytics: analyticsEntries.length
+        },
+        // For a real implementation, you might want to return the actual data
+        // data: { dealers, vehicles, qrCodes, consumers, testDrives, reservations, analyticsEntries }
       };
     } catch (error) {
       this._updateStatus(`Error generating test data: ${error.message}`, 'error');

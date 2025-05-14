@@ -30,69 +30,22 @@ export default function TestDataSetup() {
     timeRange: 90
   });
 
-  // Sample vehicle data (simplified for this demo)
-  const sampleVehicles = [
-    {
-      stock_number: 'A12345',
-      vin: '1HGCM82633A123456',
-      year: 2023,
-      make: 'Toyota',
-      model: 'Camry',
-      trim: 'XSE',
-      price: 28999,
-      mileage: 5280,
-      exterior_color: 'Midnight Black Metallic',
-      interior_color: 'Black Leather',
-      mpg: '28 City / 39 Hwy',
-      engine: '2.5L 4-Cylinder',
-      transmission: '8-Speed Automatic',
-      drivetrain: 'Front-Wheel Drive',
-      fuel_type: 'Gasoline',
-      features: [
-        'Adaptive Cruise Control',
-        'Lane Departure Warning',
-        'Blind Spot Monitor',
-        'Wireless Apple CarPlay & Android Auto',
-        'Panoramic Sunroof',
-        'JBL Premium Audio',
-        'Heated & Ventilated Front Seats',
-        'Head-Up Display',
-        'Bird\'s Eye View Camera',
-        '19-inch Alloy Wheels'
-      ],
-      status: 'Active'
-    },
-    {
-      stock_number: 'B54321',
-      vin: '1HGCV2F34NA123456',
-      year: 2022,
-      make: 'Honda',
-      model: 'Accord',
-      trim: 'Touring',
-      price: 32999,
-      mileage: 12580,
-      exterior_color: 'Crystal Black Pearl',
-      interior_color: 'Black Leather',
-      mpg: '22 City / 32 Hwy',
-      engine: '2.0L Turbocharged I-4',
-      transmission: '10-Speed Automatic',
-      drivetrain: 'Front-Wheel Drive',
-      fuel_type: 'Gasoline',
-      features: [
-        'Heated & Ventilated Front Seats',
-        'Wireless Apple CarPlay & Android Auto',
-        'Honda Sensing Suite',
-        'Head-Up Display',
-        'Navigation System',
-        'Premium Audio System',
-        'Sunroof',
-        'LED Headlights',
-        'Adaptive Cruise Control',
-        'Wireless Phone Charger'
-      ],
-      status: 'Active'
-    }
-  ];
+  // Set up service callbacks when component mounts
+  useEffect(() => {
+    dataImportService.setProgressCallback((progress) => {
+      setProgress(progress);
+    });
+
+    dataImportService.setStatusCallback((message, type) => {
+      setStatus({ message, type });
+    });
+
+    return () => {
+      // Clear callbacks when component unmounts
+      dataImportService.setProgressCallback(null);
+      dataImportService.setStatusCallback(null);
+    };
+  }, []);
 
   // Handle option changes
   const handleOptionChange = (key: string, value: boolean | number) => {
@@ -102,56 +55,22 @@ export default function TestDataSetup() {
     });
   };
 
-  // Generate test data using built-in functions
+  // Generate test data using the service
   const generateTestData = async () => {
     setIsGenerating(true);
     setProgress(0);
     setShowSuccessDetails(false);
     setStatus({ message: 'Starting test data generation...', type: 'info' });
-    
+
     try {
-      // Step 1: Create dealer profiles
-      setStatus({ message: 'Creating dealer profiles...', type: 'info' });
-      await setupDealerProfile();
-      setProgress(10);
-      
-      // Step 2: Generate sample vehicles
-      setStatus({ message: 'Generating sample vehicles...', type: 'info' });
-      await setupSampleVehicles();
-      setProgress(30);
-      
-      // Step 3: Create QR codes for vehicles
-      setStatus({ message: 'Creating QR codes for vehicles...', type: 'info' });
-      await setupQRCodes();
-      setProgress(50);
-      
-      // Step 4: Generate test drive requests
-      setStatus({ message: 'Generating test drive requests...', type: 'info' });
-      await setupTestDrives();
-      setProgress(65);
-      
-      // Step 5: Create sample reservations
-      setStatus({ message: 'Creating sample reservations...', type: 'info' });
-      await setupReservations();
-      setProgress(80);
-      
-      // Step 6: Generate analytics data
-      setStatus({ message: 'Generating analytics data...', type: 'info' });
-      await setupAnalyticsData();
-      setProgress(95);
-      
-      // Complete
-      setProgress(100);
-      setStatus({ message: 'Test data generation completed successfully!', type: 'success' });
-      setGeneratedCounts({
-        dealers: 1,
-        vehicles: options.vehicleCount > 5 ? 5 : options.vehicleCount, // Limit to 5 for demo
-        qrCodes: options.vehicleCount > 5 ? 5 : options.vehicleCount,
-        testDrives: 12,
-        reservations: 8,
-        analytics: 150
-      });
-      setShowSuccessDetails(true);
+      const result = await dataImportService.generateTestData(options);
+
+      if (result.success) {
+        setGeneratedCounts(result.counts);
+        setShowSuccessDetails(true);
+      } else if (result.cancelled) {
+        setStatus({ message: 'Operation cancelled by user.', type: 'warning' });
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       setStatus({ message: `Error generating test data: ${errorMessage}`, type: 'error' });
@@ -160,55 +79,27 @@ export default function TestDataSetup() {
     }
   };
 
-  // Mock function for setting up dealer profile
-  const setupDealerProfile = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // Mock function for setting up sample vehicles
-  const setupSampleVehicles = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1500));
-  };
-
-  // Mock function for setting up QR codes
-  const setupQRCodes = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // Mock function for setting up test drives
-  const setupTestDrives = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // Mock function for setting up reservations
-  const setupReservations = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // Mock function for setting up analytics data
-  const setupAnalyticsData = async () => {
-    return new Promise(resolve => setTimeout(resolve, 1000));
-  };
-
-  // Mock function to clear test data
+  // Clear test data using the service
   const clearTestData = async () => {
     setIsClearing(true);
     setStatus({ message: 'Clearing test data...', type: 'info' });
-    
+
     try {
-      // Simulate database clearing operations
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setStatus({ message: 'All test data has been cleared successfully.', type: 'success' });
-      setGeneratedCounts({
-        dealers: 0,
-        vehicles: 0,
-        qrCodes: 0,
-        testDrives: 0,
-        reservations: 0,
-        analytics: 0
-      });
-      setShowSuccessDetails(false);
+      const result = await dataImportService.clearTestData();
+
+      if (result.success) {
+        setGeneratedCounts({
+          dealers: 0,
+          vehicles: 0,
+          qrCodes: 0,
+          testDrives: 0,
+          reservations: 0,
+          analytics: 0
+        });
+        setShowSuccessDetails(false);
+      } else if (result.cancelled) {
+        setStatus({ message: 'Operation cancelled by user.', type: 'warning' });
+      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       setStatus({ message: `Error clearing test data: ${errorMessage}`, type: 'error' });
@@ -216,12 +107,10 @@ export default function TestDataSetup() {
       setIsClearing(false);
     }
   };
-  
+
   // Cancel current operation
   const cancelOperation = () => {
-    setStatus({ message: 'Operation cancelled by user.', type: 'warning' });
-    setIsGenerating(false);
-    setIsClearing(false);
+    dataImportService.cancelOperation();
   };
 
   return (

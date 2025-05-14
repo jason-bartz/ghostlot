@@ -73,7 +73,20 @@ interface AnimatedGradientBackgroundProps {
  *
  * This component renders a customizable animated radial gradient background with a subtle breathing effect.
  * It uses `framer-motion` for an entrance animation and raw CSS gradients for the dynamic background.
- *
+ * 
+ * Features:
+ * - Single radial gradient with customizable colors and stops
+ * - "Breathing" animation that expands and contracts the gradient
+ * - Predefined themes (default and red-white)
+ * - Smooth entrance animation with fade-in and scale effects
+ * - Highly customizable with multiple parameters
+ * 
+ * This component differs from BackgroundGradientAnimation by:
+ * - Using a single radial gradient instead of multiple layers
+ * - Having a simpler "breathing" animation rather than complex path animations
+ * - Including predefined themes for quick styling
+ * - Being more performance-efficient for simpler gradient needs
+ * - Supporting precise customization of gradient stops and colors
  *
  * @param {AnimatedGradientBackgroundProps} props - Props for configuring the gradient animation.
  * @returns JSX.Element

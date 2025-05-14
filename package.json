@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "sync-check": "node sync-check.js",
-    "setup-hooks": "git config core.hooksPath .githooks"
+    "setup-hooks": "git config core.hooksPath .githooks",
+    "test-domains": "node test-domains.js"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.13.5",

@@ -2,6 +2,26 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 
+/**
+ * BackgroundGradientAnimation
+ * 
+ * A complex animated gradient background component that creates a full-screen interactive
+ * effect with multiple animated color layers. This component is designed for high-visual-impact
+ * page backgrounds with mouse interactivity.
+ * 
+ * Features:
+ * - Multiple overlapping gradient layers with independent animations
+ * - Interactive mouse-following gradient element (optional)
+ * - Customizable colors, sizes and blending modes
+ * - Safari-specific rendering optimizations
+ * - Fixed positioning that covers the entire viewport
+ * 
+ * This component differs from AnimatedGradientBackground by:
+ * - Using multiple animated gradient layers with complex animation paths
+ * - Supporting mouse interaction to follow cursor movements
+ * - Applying special SVG filters for enhanced visual effects
+ * - Being designed for full-screen immersive experiences
+ */
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
