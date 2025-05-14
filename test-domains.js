@@ -18,7 +18,9 @@ const http = require('http');
 const domains = [
   { host: 'ghostlot.com', path: '/', expected: 'landing' },
   { host: 'www.ghostlot.com', path: '/', expected: 'landing' },
-  { host: 'app.ghostlot.com', path: '/', expected: 'app' }
+  { host: 'app.ghostlot.com', path: '/', expected: 'app' },
+  { host: 'ghostlot.com', path: '/demo', expected: 'demo' },
+  { host: 'www.ghostlot.com', path: '/demo', expected: 'demo' }
 ];
 
 // Function to make a request
@@ -52,23 +54,46 @@ async function makeRequest(domain) {
                                         data.includes('background-color: var(--dark)')) ||
                                         data.includes('GhostLot lets your inventory sell itself');
                                         
-        // Updated to check for demo page / app content
-        const containsDemoSignature = data.includes('purple background') || 
-                                     (data.includes('background-gradient-start="rgb(108, 0, 162)"') && 
-                                      data.includes('Consumer View')) ||
-                                     data.includes('AnimatedGradientBackground');
+        // Check for demo page content
+        const containsDemoPageSignature = data.includes('GhostLot Interactive Demo') && 
+                                         data.includes('Experience how GhostLot helps dealerships');
+        
+        // Check for app/dashboard demo content
+        const containsAppDemoSignature = data.includes('purple background') || 
+                                       (data.includes('background-gradient-start="rgb(108, 0, 162)"') && 
+                                        data.includes('Consumer View')) ||
+                                       data.includes('AnimatedGradientBackground');
         
         console.log('Content markers found:');
         console.log('- Landing page markers:', containsLandingSignature);
-        console.log('- App/Demo page markers:', containsDemoSignature);
+        console.log('- Specific demo page markers:', containsDemoPageSignature);
+        console.log('- App/Dashboard demo markers:', containsAppDemoSignature);
         
-        // Verify against expected content type
-        const expectedType = domain.expected === 'landing' ? 'Landing page' : 'App interface';
-        const actualType = containsLandingSignature ? 'Landing page' : 
-                           containsDemoSignature ? 'App interface' : 'Unknown';
+        // Determine the type of content found
+        let actualType = 'Unknown';
+        if (containsLandingSignature) {
+          actualType = 'Landing page';
+        } else if (containsDemoPageSignature) {
+          actualType = 'Demo page';
+        } else if (containsAppDemoSignature) {
+          actualType = 'App interface';
+        }
+        
+        // Get expected type description
+        let expectedType = 'Unknown';
+        if (domain.expected === 'landing') {
+          expectedType = 'Landing page';
+        } else if (domain.expected === 'demo') {
+          expectedType = 'Demo page';
+        } else if (domain.expected === 'app') {
+          expectedType = 'App interface';
+        }
+        
+        // Check if the content matches the expected type
         const matchesExpected = (
           (domain.expected === 'landing' && containsLandingSignature) ||
-          (domain.expected === 'app' && containsDemoSignature)
+          (domain.expected === 'demo' && containsDemoPageSignature) ||
+          (domain.expected === 'app' && containsAppDemoSignature)
         );
         
         if (matchesExpected) {

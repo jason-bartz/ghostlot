@@ -16,11 +16,17 @@ export function middleware(request: NextRequest) {
     return NextResponse.rewrite(new URL('/index.html', request.url));
   }
   
+  // Handle the /demo path on the main domain
+  if (isMainDomain && pathname === '/demo') {
+    // Rewrite to the Next.js /demo route
+    return NextResponse.rewrite(new URL('/demo', request.url));
+  }
+  
   // Otherwise, continue with normal Next.js behavior
   return NextResponse.next();
 }
 
-// Run the middleware on the homepage only
+// Run the middleware on the specified paths
 export const config = {
-  matcher: ['/'],
+  matcher: ['/', '/demo'],
 };
