@@ -814,7 +814,7 @@ export default function LandingPage() {
         <div class="container">
             <div class="header-inner">
                 <div class="logo">
-                    <img src="/ghostlot-favicon.svg" alt="GhostLot Logo - 24/7 Automotive Digital Retail Solution">
+                    <img src="/ghostlot.png" alt="GhostLot Logo - 24/7 Automotive Digital Retail Solution">
                     <div class="logo-text">GhostLot</div>
                 </div>
                 <nav aria-label="Main Navigation">
@@ -834,7 +834,7 @@ export default function LandingPage() {
         <div class="container">
             <div class="hero-content">
                 <span class="hero-stars" aria-hidden="true">✨</span>
-                <h1>Your lot. Alive after hours.</h1>
+                <h1>Don't Ghost Your Leads.</h1>
                 <p>GhostLot connects shoppers to dealer inventory—whether they're on the lot or at home. It's designed to turn every vehicle into an interactive, hyper-mobile experience that works 24/7. Shoppers can view real-time pricing, schedule test drives, estimate payments, and reserve vehicles—all without needing to talk to a salesperson.</p>
                 <button class="cta-button" data-tally-open="n9a8vp" data-tally-layout="modal" data-tally-overlay="1" data-tally-emoji-text="👻" data-tally-emoji-animation="wave" aria-label="Join the GhostLot waitlist">Join the Waitlist</button>
             </div>
@@ -979,7 +979,7 @@ export default function LandingPage() {
             <div class="footer-content">
                 <div>
                     <div class="footer-logo">
-                        <img src="/ghostlot-favicon.svg" alt="GhostLot Logo" width="40" height="40">
+                        <img src="/ghostlot.png" alt="GhostLot Logo" width="40" height="40">
                         <div class="footer-logo-text">GhostLot</div>
                     </div>
                     <p class="footer-description">
