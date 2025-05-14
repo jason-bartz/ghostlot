@@ -25,8 +25,10 @@ export function middleware(request: NextRequest) {
   // If it's the main domain and root path, redirect to index.html
   if (isMainDomain && pathname === '/') {
     console.log('Rewriting to /index.html');
-    // Rewrite to /index.html
-    return NextResponse.rewrite(new URL('/index.html', request.url));
+    // Rewrite to /index.html - use a different syntax to ensure it works in production
+    const url = new URL('/index.html', request.url);
+    console.log('Rewriting to URL:', url.toString());
+    return NextResponse.rewrite(url);
   }
   
   // For localhost, we want to allow Next.js to handle all routes
@@ -47,9 +49,10 @@ export const config = {
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
-     * - assets folder
-     * - public files
+     * - static assets and images
      */
-    '/((?!_next/static|_next/image|favicon.ico|assets|ghostlot.png|ghostlot-logo.png|ghostlot-favicon.svg|ezloan-logo.png|refractionmotors.png|website|demo-vehicle|saved-vehicles).*)',
+    '/((?!_next/static|_next/image|_next/data|favicon.ico|assets|images|static|public|ghostlot.png|ghostlot-logo.png|ghostlot-favicon.svg|ezloan-logo.png|refractionmotors.png|website|demo-vehicle|saved-vehicles).*)',
+    // Explicitly include root path to ensure it's always processed by middleware
+    '/'
   ],
 };
