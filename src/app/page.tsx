@@ -33,7 +33,7 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center gap-8 max-w-3xl mx-auto text-center">
           <div className="flex flex-col items-center">
             <Image 
-              src="/ghostlot-favicon.svg" 
+              src="/ghostlot.png" 
               alt="GhostLot Logo" 
               width={120} 
               height={120} 

@@ -54,7 +54,7 @@ function DashboardContent({ children }: { children: React.ReactNode }) {
       <div className="w-64 bg-white shadow-md">
         <div className="p-6">
           <div className="flex flex-col items-center">
-            <img src="/ghostlot-logo.png" alt="GhostLot Logo" className="h-14 w-14" />
+            <img src="/ghostlot2.png" alt="GhostLot Logo" className="h-14 w-14" />
             <p className="text-sm text-gray-500 mt-1">by Refraction</p>
           </div>
         </div>

@@ -86,16 +86,16 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
       showRandomNotification('reservation');
     }, 3000);
 
-    // Second notification - Test Drive (appears 8 seconds after the first one disappears)
+    // Second notification - Test Drive (appears 18 seconds after the first one disappears)
     const timer2 = setTimeout(() => {
       showRandomNotification('testdrive');
-    }, 16000); // 3s initial + 5s display + 8s gap
+    }, 26000); // 3s initial + 5s display + 18s gap
     
-    // Set up recurring notifications if in demo mode (every 30-60 seconds)
+    // Set up recurring notifications if in demo mode (every 40-70 seconds)
     const recurringTimer = setInterval(() => {
       const randomType = Math.random() > 0.5 ? 'reservation' : 'testdrive';
       showRandomNotification(randomType);
-    }, Math.random() * 30000 + 30000); // Random interval between 30-60 seconds
+    }, Math.random() * 30000 + 40000); // Random interval between 40-70 seconds
 
     return () => {
       clearTimeout(timer1);

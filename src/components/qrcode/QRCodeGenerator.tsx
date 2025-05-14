@@ -24,16 +24,11 @@ export default function QRCodeGenerator() {
     const fetchVehicles = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('vehicles')
-          .select('*')
-          .order('created_at', { ascending: false });
+        // Import mockVehicles from mockData instead of using supabase to ensure consistency with inventory tab
+        const { mockVehicles } = await import('@/lib/mockData');
         
-        if (error) {
-          throw error;
-        }
-        
-        setVehicles(data.map(vehicle => ({ ...vehicle, selected: false })));
+        // Use the mockVehicles data to ensure it's the same as the inventory tab
+        setVehicles(mockVehicles.map(vehicle => ({ ...vehicle, selected: false })));
       } catch (err: any) {
         setError(err.message);
       } finally {

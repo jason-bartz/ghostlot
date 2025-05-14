@@ -1005,7 +1005,7 @@ Actual trade-in offers may vary.
               </a>
             )}
           </div>
-          <p className="text-xs text-gray-500 mt-2">Powered by GhostLot <img src="/ghostlot-logo.png" alt="GhostLot Logo" className="inline h-4 w-4" /></p>
+          <p className="text-xs text-gray-500 mt-2">Powered by GhostLot <img src="/ghostlot.png" alt="GhostLot Logo" className="inline h-4 w-4" /></p>
         </div>
       </div>
 
