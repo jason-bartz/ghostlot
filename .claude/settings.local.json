@@ -26,7 +26,8 @@
       "Bash(node:*)",
       "Bash(git rm:*)",
       "Bash(diff:*)",
-      "WebFetch(domain:docs.anthropic.com)"
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(npx vercel:*)"
     ],
     "deny": []
   }
