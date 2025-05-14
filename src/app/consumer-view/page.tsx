@@ -433,7 +433,7 @@ export default function ConsumerView() {
           </div>
         </div>
       </div>
-            
+      
       {/* Photo Carousel */}
       <div className="relative overflow-hidden">
         <div className="flex items-center justify-center">
