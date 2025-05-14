@@ -4,9 +4,14 @@ import React, { useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Car, BarChart2, QrCode, Settings, Calendar, Users, LogOut } from 'lucide-react';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { NotificationProvider } from '@/components/ui/notification-provider';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  return <DashboardContent>{children}</DashboardContent>;
+  return (
+    <NotificationProvider demoMode={true}>
+      <DashboardContent>{children}</DashboardContent>
+    </NotificationProvider>
+  );
 }
 
 function DashboardContent({ children }: { children: React.ReactNode }) {
