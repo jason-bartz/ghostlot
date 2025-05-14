@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Edit, Trash2, Plus, Upload, Filter } from 'lucide-react';
 import supabase from '@/lib/supabase';
 import { Database } from '@/lib/supabase';
-import { customMockData } from '@/lib/mockData';
+import { customMockData, mockVehicles } from '@/lib/mockData';
 
 type Vehicle = Database['public']['Tables']['vehicles']['Row'];
 
@@ -53,127 +53,8 @@ export default function InventoryManagement() {
     try {
       setLoading(true);
       
-      // For demo purposes, use mock data instead of fetching from Supabase
-      const mockVehicles = customMockData.dealerInfo ? 
-        // Use mock vehicles from customMockData if available
-        [
-          {
-            id: "v1",
-            created_at: new Date().toISOString(),
-            stock_number: 'A12345',
-            vin: '1HGCM82633A123456',
-            dealer_id: 'demo-dealer-id',
-            year: 2023,
-            make: 'Toyota',
-            model: 'Camry',
-            trim: 'XLE',
-            price: 32999,
-            mileage: 5200,
-            exterior_color: 'Midnight Black',
-            interior_color: 'Ash',
-            mpg: '28 city / 39 hwy',
-            engine: '2.5L 4-Cylinder',
-            transmission: 'Automatic',
-            drivetrain: 'FWD',
-            fuel_type: 'Gasoline',
-            features: ['Backup Camera', 'Bluetooth', 'Navigation', 'Heated Seats'],
-            images: [],
-            status: 'Active'
-          },
-          {
-            id: "v2",
-            created_at: new Date().toISOString(),
-            stock_number: 'A12346',
-            vin: '5UXWX7C5*BA123457',
-            dealer_id: 'demo-dealer-id',
-            year: 2022,
-            make: 'Honda',
-            model: 'Accord',
-            trim: 'Touring',
-            price: 28995,
-            mileage: 12500,
-            exterior_color: 'Platinum White',
-            interior_color: 'Black',
-            mpg: '30 city / 38 hwy',
-            engine: '1.5L Turbo 4-Cylinder',
-            transmission: 'CVT',
-            drivetrain: 'FWD',
-            fuel_type: 'Gasoline',
-            features: ['Apple CarPlay', 'Android Auto', 'Sunroof', 'Adaptive Cruise Control'],
-            images: [],
-            status: 'Active'
-          },
-          {
-            id: "v3",
-            created_at: new Date().toISOString(),
-            stock_number: 'T98765',
-            vin: 'JH4KB16534C123458',
-            dealer_id: 'demo-dealer-id',
-            year: 2021,
-            make: 'Ford',
-            model: 'F-150',
-            trim: 'Lariat',
-            price: 45999,
-            mileage: 24000,
-            exterior_color: 'Velocity Blue',
-            interior_color: 'Medium Earth Gray',
-            mpg: '20 city / 26 hwy',
-            engine: '3.5L EcoBoost V6',
-            transmission: '10-Speed Automatic',
-            drivetrain: '4WD',
-            fuel_type: 'Gasoline',
-            features: ['Leather Seats', 'Towing Package', 'Bedliner', 'Premium Sound System'],
-            images: [],
-            status: 'Reserved'
-          },
-          {
-            id: "v4",
-            created_at: new Date().toISOString(),
-            stock_number: 'S54321',
-            vin: 'WBABN33481J123459',
-            dealer_id: 'demo-dealer-id',
-            year: 2023,
-            make: 'Tesla',
-            model: 'Model 3',
-            trim: 'Long Range',
-            price: 52990,
-            mileage: 1500,
-            exterior_color: 'Deep Blue Metallic',
-            interior_color: 'White',
-            mpg: 'Electric',
-            engine: 'Electric',
-            transmission: 'Single-Speed',
-            drivetrain: 'AWD',
-            fuel_type: 'Electric',
-            features: ['Autopilot', 'Glass Roof', 'Premium Connectivity', 'Heated Seats'],
-            images: [],
-            status: 'Active'
-          },
-          {
-            id: "v5",
-            created_at: new Date().toISOString(),
-            stock_number: 'C67890',
-            vin: '3VWPD71K05M123460',
-            dealer_id: 'demo-dealer-id',
-            year: 2022,
-            make: 'Chevrolet',
-            model: 'Silverado',
-            trim: 'LTZ',
-            price: 38500,
-            mileage: 35000,
-            exterior_color: 'Summit White',
-            interior_color: 'Jet Black',
-            mpg: '16 city / 21 hwy',
-            engine: '5.3L V8',
-            transmission: '8-Speed Automatic',
-            drivetrain: '4WD',
-            fuel_type: 'Gasoline',
-            features: ['Z71 Off-Road Package', 'Trailering Package', 'Lifted Suspension', 'Spray-in Bedliner'],
-            images: [],
-            status: 'Sold'
-          }
-        ] as Vehicle[]
-        : [];
+      // For demo purposes, use the mockVehicles data from mockData.ts 
+      // This ensures consistency with the QR Code tab that uses the same data source
       
       let filteredVehicles = mockVehicles;
       
