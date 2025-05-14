@@ -1,1 +1,21 @@
-{}
+{
+  "/_not-found": "app/_not-found.js",
+  "/page": "app/page.js",
+  "/dashboard-demo/page": "app/dashboard-demo/page.js",
+  "/demo/page": "app/demo/page.js",
+  "/demo-gradient/page": "app/demo-gradient/page.js",
+  "/admin/test-data/page": "app/admin/test-data/page.js",
+  "/vehicle/[id]/page": "app/vehicle/[id]/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/consumer-view/page": "app/consumer-view/page.js",
+  "/dashboard/inventory/page": "app/dashboard/inventory/page.js",
+  "/dashboard/reservations/page": "app/dashboard/reservations/page.js",
+  "/dashboard/qr-codes/page": "app/dashboard/qr-codes/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/dashboard/settings/page": "app/dashboard/settings/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
+  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
+  "/dashboard/test-drives/page": "app/dashboard/test-drives/page.js",
+  "/(auth)/forgot-password/page": "app/(auth)/forgot-password/page.js",
+  "/dashboard/qr-codes/preview/[id]/page": "app/dashboard/qr-codes/preview/[id]/page.js"
+}
