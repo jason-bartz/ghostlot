@@ -8,13 +8,10 @@ export function middleware(request: NextRequest) {
   // Log incoming request details
   console.log(`Middleware processing: ${pathname}`);
 
-  // Handle root path specifically - direct to index.html
-  if (pathname === '/') {
-    console.log('Root path detected, rewriting to /index.html');
-    return NextResponse.rewrite(new URL('/index.html', request.url));
-  }
+  // Root path now serves the Next.js page - no rewrite needed
+  // Removed rewrite to index.html to serve the Next.js page instead
 
-  // Let all other requests continue normally
+  // Let all requests continue normally
   return NextResponse.next();
 }
 

@@ -7,34 +7,39 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'GhostLot™ - Don\'t Get Ghosted by Your Leads',
-  description: 'GhostLot™ connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features.',
+  description: 'GhostLot connects automotive shoppers to dealer inventory 24/7 with interactive QR codes, digital reservations, and self-service features - even when the dealership is closed.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://ghostlot.com'),
   keywords: ['car dealership software', 'automotive digital retailing', 'QR code inventory', 'dealership tech', 'after hours car shopping'],
   icons: {
-    icon: '/ghostlot-favicon.svg',
-    apple: '/ghostlot-favicon.svg',
+    icon: '/ghostlot.png',
+    apple: '/ghostlot.png',
   },
   openGraph: {
     type: 'website',
+    url: 'https://ghostlot.com',
     title: 'GhostLot™ - Don\'t Get Ghosted by Your Leads',
-    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
+    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you\'re closed.',
     images: [
       {
-        url: '/opengraph-2.webp',
+        url: '/opengraph-3.webp',
         width: 1200,
         height: 630,
         alt: 'GhostLot - Don\'t Get Ghosted by Your Leads'
       }
     ],
-    url: 'https://ghostlot.com',
     siteName: 'GhostLot™',
   },
   twitter: {
     card: 'summary_large_image',
+    url: 'https://ghostlot.com',
     title: 'GhostLot™ - Don\'t Get Ghosted by Your Leads',
-    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you are closed.',
-    images: ['/opengraph-2.webp'],
+    description: 'Transform your dealership with 24/7 digital connections to your inventory. GhostLot™ lets shoppers view, save, and reserve vehicles even when you\'re closed.',
+    images: ['/opengraph-3.webp'],
+    imageAlt: 'GhostLot - Don\'t Get Ghosted by Your Leads'
   },
+  other: {
+    'google-site-verification': process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  }
 };
 
 export default function RootLayout({

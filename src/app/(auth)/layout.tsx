@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <meta name="description" content="Sign in to your GhostLot dashboard to manage your dealership's digital presence." />
         <meta property="og:title" content="GhostLot™ - Don't Get Ghosted by Your Leads - Sign In" />
         <meta property="og:description" content="Sign in to your GhostLot dashboard to manage your dealership's digital presence." />
-        <meta property="og:image" content="https://ghostlot.com/opengraph-2.webp" />
+        <meta property="og:image" content="https://ghostlot.com/opengraph-3.webp" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://app.ghostlot.com/login" />
@@ -19,7 +19,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="GhostLot™ - Don't Get Ghosted by Your Leads - Sign In" />
         <meta name="twitter:description" content="Sign in to your GhostLot dashboard to manage your dealership's digital presence." />
-        <meta name="twitter:image" content="/opengraph-2.webp" />
+        <meta name="twitter:image" content="/opengraph-3.webp" />
       </Head>
       {children}
     </>

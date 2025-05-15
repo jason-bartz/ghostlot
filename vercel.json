@@ -16,9 +16,9 @@
     }
   ],
   "routes": [
-    { "src": "^/$", "dest": "/index.html" },
+    { "src": "^/$", "dest": "/" },
     { "src": "^/demo$", "dest": "/demo" },
-    { "src": "^/index.html$", "dest": "/index.html" },
+    { "src": "^/index.html$", "dest": "/" },
     { "src": "^/((?!api|_next/static|_next/image).+)$", "dest": "/$1" }
   ]
 }
