@@ -34,9 +34,20 @@ export default function DemoPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#0A0A0A] relative overflow-hidden">
+      {/* Override body background for this page */}
+      <style jsx global>{`
+        body {
+          background: #0A0A0A !important;
+        }
+      `}</style>
+      
       {/* Background */}
-      <AnimatedGradientBackground className="fixed inset-0 z-0" />
+      <AnimatedGradientBackground 
+        className="fixed inset-0 z-0" 
+        startingGap={200}
+        containerStyle={{ background: '#0A0A0A' }}
+      />
       
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center py-8 px-4">
@@ -103,62 +114,59 @@ export default function DemoPage() {
             <div 
               className="phone-frame relative"
               onClick={(e) => e.stopPropagation()}
+              style={{
+                width: '375px',
+                height: '760px',
+                backgroundColor: 'black',
+                borderRadius: '40px',
+                overflow: 'hidden',
+                position: 'relative',
+                boxShadow: '0 25px 50px -12px rgba(0,0,0,0.6)',
+                padding: '10px'
+              }}
             >
-              {/* Phone Frame Styling */}
-              <style jsx>{`
-                .phone-frame {
-                  width: 375px;
-                  height: 760px;
-                  background-color: black;
-                  border-radius: 40px;
-                  overflow: hidden;
-                  position: relative;
-                  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
-                  padding: 10px;
-                }
-                
-                .phone-content {
-                  width: 100%;
-                  height: 100%;
-                  overflow: hidden;
-                  border-radius: 30px;
-                  background-color: white;
-                  position: relative;
-                }
-                
-                /* Notch styling */
-                .phone-notch {
-                  position: absolute;
-                  top: 0;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 150px;
-                  height: 30px;
-                  background-color: black;
-                  border-bottom-left-radius: 15px;
-                  border-bottom-right-radius: 15px;
-                  z-index: 10;
-                }
-                
-                /* Home indicator */
-                .home-indicator {
-                  position: absolute;
-                  bottom: 8px;
-                  left: 50%;
-                  transform: translateX(-50%);
-                  width: 120px;
-                  height: 5px;
-                  background-color: #ddd;
-                  border-radius: 3px;
-                  z-index: 10;
-                }
-              `}</style>
-              
-              <div className="phone-notch"></div>
-              <div className="phone-content">
+              <div 
+                className="phone-notch"
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '150px',
+                  height: '30px',
+                  backgroundColor: 'black',
+                  borderBottomLeftRadius: '15px',
+                  borderBottomRightRadius: '15px',
+                  zIndex: 10
+                }}
+              ></div>
+              <div 
+                className="phone-content"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  overflow: 'hidden',
+                  borderRadius: '30px',
+                  backgroundColor: 'white',
+                  position: 'relative'
+                }}
+              >
                 <ConsumerViewDemo />
               </div>
-              <div className="home-indicator"></div>
+              <div 
+                className="home-indicator"
+                style={{
+                  position: 'absolute',
+                  bottom: '8px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '120px',
+                  height: '5px',
+                  backgroundColor: '#ddd',
+                  borderRadius: '3px',
+                  zIndex: 10
+                }}
+              ></div>
             </div>
             
             {/* Close button */}
